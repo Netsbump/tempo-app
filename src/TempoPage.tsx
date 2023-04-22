@@ -65,12 +65,12 @@ export const TempoPage: React.FC<TempoPageProps> = ({ tempo, repetitions, onRese
   return (
     <div className={styles.container}>
       <header className={styles.header}>
-        <h1 className={styles.title}>Tempo: {tempo.join(' - ')}</h1>
-        <div className={styles.info}>Répétitions : {repetitions}</div>
+        <h1 className={styles.title}>TEMPO {tempo.join(' | ')}</h1>
+        <div className={styles.info}>ROUND {currentRepetition + 1} OF {repetitions}</div>
       </header>
       <main className={styles.main}>
-        <div className={styles.info}>
-          Répétition actuelle : {isFinished ? 'Terminé' : currentRepetition}
+        <div className={styles.round}>
+          {isFinished ? `${currentRepetition + 1} ROUNDS OF ${repetitions} COMPLETED` : currentRepetition}
         </div>
         <div className={styles.info}>Phase en cours : {currentPhase + 1}</div>
         <div className={styles.timer}>{timeLeft}</div>

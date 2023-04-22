@@ -4,8 +4,6 @@
     align-items: center;
     justify-content: space-around;
     min-height: 100vh;
-    background-color: #222;
-    color: #fff;
   }
   
   .header {
@@ -28,6 +26,10 @@
   .info {
     font-size: 1.5rem;
     margin-bottom: 1rem;
+  }
+
+  .round {
+    color: #ff4136;
   }
   
   .timer {

@@ -15,7 +15,6 @@ export const InputPage: React.FC<InputPageProps> = ({ onSubmit }) => {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Entrez le tempo et le nombre de répétitions</h1>
       <label>TEMPO</label>
       <input
         className={styles.input}
