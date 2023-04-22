@@ -1,3 +1,23 @@
+@font-face {
+  font-family: 'Iosevka';
+  src: url('/src/fonts/iosevka-regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+:root {
+  font-family: 'Iosevka', sans-serif;
+
+  color: #ffffff;
+  background-color: #242A32;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+
 body {
   min-width: 100vw;
   min-height: 100%;

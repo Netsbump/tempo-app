@@ -6,7 +6,7 @@ interface InputPageProps {
 }
 
 export const InputPage: React.FC<InputPageProps> = ({ onSubmit }) => {
-  const [tempo, setTempo] = useState<[number, number, number, number]>([4, 0, 1, 2]);
+  const [tempo, setTempo] = useState<[number, number, number, number]>([4, 2, 2, 1]);
   const [repetitions, setRepetitions] = useState<number>(10);
 
   const handleSubmit = () => {
@@ -15,13 +15,15 @@ export const InputPage: React.FC<InputPageProps> = ({ onSubmit }) => {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Entrer le tempo et le nombre de répétitions</h1>
+      <h1 className={styles.title}>Entrez le tempo et le nombre de répétitions</h1>
+      <label>TEMPO</label>
       <input
         className={styles.input}
         type="text"
         value={tempo.join('/')}
         onChange={(e) => setTempo(e.target.value.split('/').map(Number) as [number, number, number, number])}
       />
+      <label>REPETITIONS</label>
       <input
         className={styles.input}
         type="number"
@@ -29,7 +31,7 @@ export const InputPage: React.FC<InputPageProps> = ({ onSubmit }) => {
         onChange={(e) => setRepetitions(parseInt(e.target.value))}
       />
       <button className={styles.submitButton} onClick={handleSubmit}>
-        Soumettre
+        START
       </button>
     </div>
   );

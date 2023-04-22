@@ -24,9 +24,9 @@ const Warmup: React.FC<WarmupProps> = ({ initialTimeLeft, onWarmupEnd }) => {
   }, [remainingTime, onWarmupEnd]);
 
   return (
-    <div className={styles.warmup}>
-      <h2>Préparation</h2>
-      <p>{remainingTime}</p>
+    <div className={styles.container}>
+      <h2 className={styles.title} >Préparation</h2>
+      <p className={styles.timer}>{remainingTime}</p>
     </div>
   );
 };
