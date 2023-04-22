@@ -14,6 +14,7 @@ export const TempoPage: React.FC<TempoPageProps> = ({ tempo, repetitions, onRese
   const [isFinished, setIsFinished] = useState<boolean>(false);
 
   const beepAudio = useRef<HTMLAudioElement | null>(null);
+  const endRepAudio = useRef<HTMLAudioElement | null>(null);
 
   const playBeep = () => {
     if (beepAudio.current) {
@@ -21,17 +22,31 @@ export const TempoPage: React.FC<TempoPageProps> = ({ tempo, repetitions, onRese
     }
   };
 
+  const playEndRep = () => {
+    if (endRepAudio.current) {
+      endRepAudio.current.play();
+    }
+  };
+
+  const adjustedTempo = tempo.map((t) => (t === 0 ? 0.5 : t));
+
   useEffect(() => {
     if (isFinished) return;
 
     if (timeLeft <= 0) {
       const nextPhase = (currentPhase + 1) % 4;
-      setCurrentPhase(nextPhase);
-      setTimeLeft(tempo[nextPhase]);
 
       if (nextPhase === 0) {
         playBeep();
-        if (currentRepetition === repetitions) {
+      } else {
+        playEndRep();
+      }
+
+      setCurrentPhase(nextPhase);
+      setTimeLeft(adjustedTempo[nextPhase]);
+
+      if (nextPhase === 0) {
+        if (currentRepetition + 1 === repetitions) {
           setIsFinished(true);
           return;
         } else {
@@ -45,21 +60,26 @@ export const TempoPage: React.FC<TempoPageProps> = ({ tempo, repetitions, onRese
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [currentPhase, timeLeft, tempo, currentRepetition, repetitions, isFinished]);
+  }, [currentPhase, timeLeft, adjustedTempo, currentRepetition, repetitions, isFinished, playBeep, playEndRep]);
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Tempo: {tempo.join(' - ')}</h1>
-      <div className={styles.info}>Répétitions : {repetitions}</div>
-      <div className={styles.info}>
-        Répétition actuelle : {isFinished ? 'Terminé' : currentRepetition}
-      </div>
-      <div className={styles.info}>Phase en cours : {currentPhase + 1}</div>
-      <div className={styles.timer}>{timeLeft}</div>
+      <header className={styles.header}>
+        <h1 className={styles.title}>Tempo: {tempo.join(' - ')}</h1>
+        <div className={styles.info}>Répétitions : {repetitions}</div>
+      </header>
+      <main className={styles.main}>
+        <div className={styles.info}>
+          Répétition actuelle : {isFinished ? 'Terminé' : currentRepetition}
+        </div>
+        <div className={styles.info}>Phase en cours : {currentPhase + 1}</div>
+        <div className={styles.timer}>{timeLeft}</div>
+      </main>
       <button className={styles.resetButton} onClick={onReset}>
         Réinitialiser
       </button>
-      <audio ref={beepAudio} src="../public/beep.mp3" />
+      <audio ref={beepAudio} src="/beep.mp3" />
+      <audio ref={endRepAudio} src="/short-beep.mp3" />
     </div>
   );
 };
