@@ -1,0 +1,40 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: 'Arial', sans-serif;
+    background-color: #222;
+    color: #fff;
+  }
+  
+  .title {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .input {
+    font-size: 1.25rem;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    background-color: transparent;
+    border: 2px solid #fff;
+    color: #fff;
+  }
+  
+  .submitButton {
+    font-size: 1.25rem;
+    padding: 0.5rem 1rem;
+    border: 2px solid #fff;
+    background-color: transparent;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .submitButton:hover {
+    background-color: #fff;
+    color: #222;
+  }
+  
