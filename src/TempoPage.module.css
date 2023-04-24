@@ -13,10 +13,16 @@
     align-items: center;
   }
 
+  .left {
+    display: flex;
+    align-items: center;
+  }
+
   .main {
     display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
   }
 
   .title {
@@ -31,9 +37,8 @@
   }
 
   .tempo {
-    /* border: solid 1px #fff; */
-    font-size: 3.5vw;
-    /* display: flex; */
+    font-size: 4.5vw;
+    width: 5rem;
   }
 
   .phase {
@@ -54,9 +59,8 @@
   }
   
   .timer {
-    font-size: 6rem;
+    font-size: 12rem;
     font-weight: bold;
-    margin-bottom: 2rem;
   }
   
   .resetButton {

@@ -87,27 +87,31 @@ export const TempoPage: React.FC<TempoPageProps> = ({ tempo, repetitions, onRese
   return (
     <div className={styles.container}>
       <header className={styles.header}>
-        <div className={styles.info}>ROUND 
-          <span className={styles.round}> {currentRepetition} </span>
-          <span>OF {repetitions}</span>
+        <div className={styles.left}>
+          <h1 className={styles.info}>TEMPO -</h1>
+          <div className={styles.info}>ROUND 
+            <span className={styles.round}> {currentRepetition} </span>
+            <span>OF {repetitions}</span>
+          </div>
         </div>
         <FullScreenButton />
       </header>
-      <div>
-          <h1 className={styles.title}>TEMPO</h1>
-          <div className={styles.tempo}>{renderTempoElements()}</div>
-        </div>
+      
       <main className={styles.main}>
-        <div className={styles.completed}>
-          {isFinished ? `${currentRepetition} ROUNDS OF ${repetitions} COMPLETED` : null}
+        <div>
+          
+          <div className={styles.tempo}>{renderTempoElements()}</div>
         </div>
         <div className={styles.timer}>{timeLeft}</div>
       </main>
+      <div className={styles.completed}>
+          {isFinished ? `${repetitions} ROUNDS COMPLETED` : null}
+      </div>
       <button className={styles.resetButton} onClick={onReset}>
         Réinitialiser
       </button>
-      <audio ref={beepAudio} src="/beep.mp3" />
-      <audio ref={endRepAudio} src="/short-beep.mp3" />
+      <audio ref={endRepAudio} src="/beep.mp3" />
+      <audio ref={beepAudio} src="/short-beep.mp3" />
     </div>
   );
 };
