@@ -88,10 +88,12 @@ export const TempoPage: React.FC<TempoPageProps> = ({ tempo, repetitions, onRese
     <div className={styles.container}>
       <header className={styles.header}>
         <div className={styles.left}>
-          <h1 className={styles.info}>TEMPO -</h1>
-          <div className={styles.info}>ROUND 
-            <span className={styles.round}> {currentRepetition} </span>
-            <span>OF {repetitions}</span>
+          <h1 className={styles.title}>TEMPO</h1>
+          <div className={styles.info}>
+            <span>- ROUND</span> 
+            <span className={styles.round}>{currentRepetition}</span>
+            <span>OF</span>
+            <span>{repetitions}</span>
           </div>
         </div>
         <FullScreenButton />
@@ -108,7 +110,7 @@ export const TempoPage: React.FC<TempoPageProps> = ({ tempo, repetitions, onRese
           {isFinished ? `${repetitions} ROUNDS COMPLETED` : null}
       </div>
       <button className={styles.resetButton} onClick={onReset}>
-        Réinitialiser
+        Retour
       </button>
       <audio ref={endRepAudio} src="/beep.mp3" />
       <audio ref={beepAudio} src="/short-beep.mp3" />
