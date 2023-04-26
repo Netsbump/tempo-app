@@ -3,15 +3,17 @@ import FullScreenButton from './FullScreenButton';
 import styles from './InputPage.module.css';
 
 interface InputPageProps {
-  onSubmit: (tempo: [number, number, number, number], repetitions: number) => void;
+  onSubmit: (tempo: [number, number, number, number], repetitions: number, rest: number) => void;
 }
 
 export const InputPage: React.FC<InputPageProps> = ({ onSubmit }) => {
   const [tempo, setTempo] = useState<[number, number, number, number]>([4, 2, 2, 1]);
   const [repetitions, setRepetitions] = useState<number>(10);
+  const [rest, setRest] = useState<number>(30);
 
+  // Elle appelle la fonction onSubmit passée en tant que prop avec les valeurs tempo et repetitions actuelles.
   const handleSubmit = () => {
-    onSubmit(tempo, repetitions);
+    onSubmit(tempo, repetitions, rest);
   };
 
   return (
@@ -51,7 +53,18 @@ export const InputPage: React.FC<InputPageProps> = ({ onSubmit }) => {
             value={repetitions}
             onChange={(e) => setRepetitions(parseInt(e.target.value))}
           />
-          <span className={styles.duration}>ROUND</span>
+          <span className={styles.duration}>REPS</span>
+        </div>
+
+        <div className={styles.inputWrapper}>
+          <span className={styles.info}>REST</span>
+          <input
+            className={styles.input}
+            type="number"
+            value={rest}
+            onChange={(e) => setRest(parseInt(e.target.value))}
+          />
+          <span className={styles.duration}>SECONDS</span>
         </div>
         
         <div className={styles.inputWrapper}>

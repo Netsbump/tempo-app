@@ -6,9 +6,10 @@ interface TempoPageProps {
   tempo: [number, number, number, number];
   repetitions: number;
   onReset: () => void;
+  onEnd: () => void;
 }
 
-export const TempoPage: React.FC<TempoPageProps> = ({ tempo, repetitions, onReset }) => {
+export const TempoPage: React.FC<TempoPageProps> = ({ tempo, repetitions, onReset, onEnd }) => {
 
   const [currentPhase, setCurrentPhase] = useState<number>(0);
   const [timeLeft, setTimeLeft] = useState<number>(tempo[currentPhase]);
@@ -34,7 +35,9 @@ export const TempoPage: React.FC<TempoPageProps> = ({ tempo, repetitions, onRese
   useEffect(() => {
 
     // Si l'exercice est terminé, on ne fait rien.
-    if (isFinished) return;
+    if (isFinished) {
+      onEnd();
+    };
   
     // Si le temps restant pour la phase en cours est épuisé.
     if (timeLeft <= 0) {
@@ -71,7 +74,7 @@ export const TempoPage: React.FC<TempoPageProps> = ({ tempo, repetitions, onRese
   
     // On nettoie l'intervalle lorsqu'on quitte le composant ou lorsqu'on passe à une autre phase.
     return () => clearInterval(interval);
-  }, [currentPhase, timeLeft, adjustedTempo, currentRepetition, repetitions, isFinished, playBeep, playEndRep]);
+  }, [currentPhase, timeLeft, adjustedTempo, currentRepetition, repetitions, isFinished, onEnd, playBeep, playEndRep ]);
   
   const renderTempoElements = () => {
     return tempo.map((t, index) => (
@@ -90,7 +93,7 @@ export const TempoPage: React.FC<TempoPageProps> = ({ tempo, repetitions, onRese
         <div className={styles.left}>
           <h1 className={styles.title}>TEMPO</h1>
           <div className={styles.info}>
-            <span>- ROUND</span> 
+            <span>- REPS</span> 
             <span className={styles.round}>{currentRepetition}</span>
             <span>OF</span>
             <span>{repetitions}</span>
@@ -106,12 +109,15 @@ export const TempoPage: React.FC<TempoPageProps> = ({ tempo, repetitions, onRese
         </div>
         <div className={styles.timer}>{timeLeft}</div>
       </main>
+      
       <div className={styles.completed}>
           {isFinished ? `${repetitions} ROUNDS COMPLETED` : null}
       </div>
+
       <button className={styles.resetButton} onClick={onReset}>
         Retour
       </button>
+
       <audio ref={endRepAudio} src="/beep.mp3" />
       <audio ref={beepAudio} src="/short-beep.mp3" />
     </div>
