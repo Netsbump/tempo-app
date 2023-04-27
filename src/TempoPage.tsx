@@ -111,7 +111,7 @@ export const TempoPage: React.FC<TempoPageProps> = ({ tempo, repetitions, onRese
       </main>
       
       <div className={styles.completed}>
-          {isFinished ? `${repetitions} ROUNDS COMPLETED` : null}
+          {isFinished ? `${repetitions} SETS COMPLETED` : null}
       </div>
 
       <button className={styles.resetButton} onClick={onReset}>

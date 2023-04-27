@@ -9,12 +9,21 @@ function App() {
   const [repetitions, setRepetitions] = useState(0);
   const [rest, setRest] = useState(0);
   const [page, setPage] = useState('input');
+  const [isResting, setIsResting] = useState<boolean>(false);
+  const [currentRound, setCurrentRound] = useState<number>(1);
+  const [rounds, setRounds] = useState<number>(1);
 
   // Cette fonction est définie dans App.tsx et passée en tant que prop onSubmit au composant InputPage.
-  const handleSubmit = (tempo: [number, number, number, number], repetitions: number, rest: number) => {
+  const handleSubmit = (
+    tempo: [number, number, number, number], 
+    repetitions: number, 
+    rest: number,
+    rounds: number
+    ) => {
     setTempo(tempo);
     setRepetitions(repetitions);
     setRest(rest);
+    setRounds(rounds);
     setPage('warmup');
   };
 
@@ -27,11 +36,18 @@ function App() {
   };
 
   const handleTempoEnd = () => {
-    setPage('rest');
+    if (currentRound < rounds) {
+      setIsResting(true);
+      setPage('rest');
+    } else {
+      handleReset();
+    }
   };
 
   const handleRestEnd = () => {
-    setPage('input');
+    setIsResting(false);
+    setCurrentRound(currentRound + 1);
+    setPage('tempo');
   };
 
   return (
