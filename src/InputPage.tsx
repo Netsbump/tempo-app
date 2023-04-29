@@ -48,10 +48,10 @@ export const InputPage: React.FC<InputPageProps> = ({ onSubmit }) => {
         </div>
         <div className={styles.inputsContainer}>
           <CustomInput
-            label="FOR"
+            label="DO"
             value={repetitions}
             onChange={setRepetitions}
-            unit="SETS"
+            unit="REPS"
           />
           <CustomInput
             label="REST"

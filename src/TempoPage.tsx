@@ -21,21 +21,15 @@ export const TempoPage: React.FC<TempoPageProps> = ({
 }) => {
   // Phase du tempo en cours (il y en a 4 possibles)
   const [currentPhase, setCurrentPhase] = useState<number>(0);
-
   // Compteur pour l'affichage du temps restant
   const [timeLeft, setTimeLeft] = useState(tempo[currentPhase]);
-
   // Compteur du nombre de rounds
   const [currentRound, setCurrentRound] = useState(1);
-
   // Compteur du nombre de repetitions 
   const [currentRepetition, setCurrentRepetition] = useState(1);
-
   const [isWarmupDone, setIsWarmupDone] = useState(false);
-
   // Etat du rest pour l'affichage du composant 
   const [isResting, setIsResting] = useState(false);
-  
   // Etat de l'exercice complet 
   const [isFinished, setIsFinished] = useState<boolean>(false);
 
@@ -57,13 +51,13 @@ export const TempoPage: React.FC<TempoPageProps> = ({
 
   useEffect(() => {
     // Si l'exercice est terminé, on retourne sur inputPage.tsx
-    if (currentRepetition > repetitions) {
+    if (currentRound > rounds) {
       setIsFinished(true);
       return;
     }
-    
+
     if (!isWarmupDone) {
-      setIsWarmupDone(true);
+      // setIsWarmupDone(true);
       return;
     }
     
@@ -77,20 +71,26 @@ export const TempoPage: React.FC<TempoPageProps> = ({
       // On passe à la phase suivante (0, 1, 2, 3) en boucle
       const nextPhase = (currentPhase + 1) % 4;
 
-      // Si la phase suivante est 0, cela signifie que nous avons terminé un round complet
+      // Si la phase suivante est 0, cela signifie que nous avons terminé un phase complète
       if (nextPhase === 0) {
         // On joue le son "endRepAudio" pour indiquer la fin d'un round
         playEndRep();
 
-        // Si on a atteint le nombre de rounds défini, on passe en mode de repos
-        if (currentRound >= rounds) {
+        // Si on a atteint le nombre de répétitions défini, on passe en mode de repos
+        if (currentRepetition === repetitions) {
+
           setIsResting(true);
           setTimeLeft(rest);
-          setCurrentRound(1);
-          setCurrentRepetition((prevRepetition) => prevRepetition + 1);
-        } else {
-          // Sinon, on incrémente le compteur de rounds
+
+          // On incrémente le round 
           setCurrentRound((prevRound) => prevRound + 1);
+
+          // On remet les reps à zero
+          setCurrentRepetition(1);
+
+        } else {
+          // Sinon, on incrémente le compteur de reps 
+          setCurrentRepetition((prevRepetition) => prevRepetition + 1);
         }
       } else {
         // Pour les autres phases (1, 2, 3), on joue le son "beepAudio" pour indiquer le changement de phase
@@ -118,7 +118,7 @@ export const TempoPage: React.FC<TempoPageProps> = ({
         <Warmup
           initialTimeLeft={3}
           onWarmupEnd={() => {
-            setIsWarmupDone(false);
+            setIsWarmupDone(true);
           }}
         />
       );
@@ -154,10 +154,10 @@ export const TempoPage: React.FC<TempoPageProps> = ({
         <div className={styles.left}>
           <h1 className={styles.title}>TEMPO</h1>
           <div className={styles.info}>
-            <span>- REPETITIONS</span> 
-            <span className={styles.round}>{currentRepetition}</span>
+            <span>- ROUNDS</span> 
+            <span className={styles.round}>{currentRound}</span>
             <span>OF</span>
-            <span>{repetitions}</span>
+            <span>{rounds}</span>
           </div>
         </div>
         <FullScreenButton />
@@ -171,7 +171,7 @@ export const TempoPage: React.FC<TempoPageProps> = ({
       <footer>
         <div className={styles.footer}>
           <div className={styles.rounds}>
-            ROUND {currentRound} / {rounds}
+            REPS {currentRepetition - 1} / {repetitions}
           </div>
           <button className={styles.resetButton} onClick={onReset}>
             RESET
