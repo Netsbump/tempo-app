@@ -1,4 +1,3 @@
-// components/Warmup.tsx
 import React, { useEffect, useState } from 'react';
 import styles from './Warmup.module.css';
 
