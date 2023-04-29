@@ -14,15 +14,6 @@
     padding: 1.5rem 0;
   }
 
-  main {
-    display: flex;
-    /* flex-direction: column; */
-    flex: 1;
-    justify-content: space-around;
-    width: 100%;
-    align-items: center;
-  }
-
   .left {
     display: flex;
     align-items: center;
@@ -36,37 +27,19 @@
     margin: 0 0 0 1.5rem;
   }
 
+  main {
+    display: flex;
+    /* flex-direction: column; */
+    flex: 1;
+    justify-content: space-around;
+    width: 100%;
+    align-items: center;
+  }
+
   .inputsContainer{
     display: flex;
     flex-direction: column;
     width: 100%;
-  }
-  
-  .info{
-    flex: 1;
-    text-align: end;
-  }
-
-  .duration{
-    flex: 1;
-    text-align: start;
-  }
-
-  .input {
-    font-size: 1rem;
-    padding: 0.8rem 1rem;
-    border: 0.15rem solid #fff;
-    margin: 0.5rem 0.5rem;
-    background-color: transparent;
-    color: #fff;
-    width: 4rem;
-    flex: 1;
-    border-radius: 10px;
-  }
-  
-  .inputWrapper {
-    display: flex;
-    align-items: center;
   }
 
   .submitButton {
@@ -84,4 +57,9 @@
     background-color: #fff;
     color: #222;
   }
+
+  
+ 
+
+
   

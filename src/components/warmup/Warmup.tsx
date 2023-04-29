@@ -7,7 +7,7 @@ interface WarmupProps {
   onWarmupEnd: () => void;
 }
 
-const Warmup: React.FC<WarmupProps> = ({ initialTimeLeft, onWarmupEnd }) => {
+export const Warmup: React.FC<WarmupProps> = ({ initialTimeLeft, onWarmupEnd }) => {
   const [remainingTime, setRemainingTime] = useState(initialTimeLeft);
 
   useEffect(() => {
@@ -31,4 +31,4 @@ const Warmup: React.FC<WarmupProps> = ({ initialTimeLeft, onWarmupEnd }) => {
   );
 };
 
-export default Warmup;
+

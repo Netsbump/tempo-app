@@ -1,0 +1,26 @@
+.info{
+    flex: 1;
+    text-align: end;
+}
+
+.inputWrapper {
+    display: flex;
+    align-items: center;
+}
+
+.input {
+    font-size: 1rem;
+    padding: 0.8rem 1rem;
+    border: 0.15rem solid #fff;
+    margin: 0.5rem 0.5rem;
+    background-color: transparent;
+    color: #fff;
+    width: 4rem;
+    flex: 1;
+    border-radius: 10px;
+}
+
+.duration{
+    flex: 1;
+    text-align: start;
+}

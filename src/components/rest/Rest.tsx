@@ -6,7 +6,7 @@ interface RestProps {
   onRestEnd: () => void;
 }
 
-const Rest: React.FC<RestProps> = ({ initialTimeLeft, onRestEnd }) => {
+export const Rest: React.FC<RestProps> = ({ initialTimeLeft, onRestEnd }) => {
   const [timeLeft, setTimeLeft] = useState(initialTimeLeft);
 
   useEffect(() => {
@@ -30,4 +30,3 @@ const Rest: React.FC<RestProps> = ({ initialTimeLeft, onRestEnd }) => {
   );
 };
 
-export default Rest;
