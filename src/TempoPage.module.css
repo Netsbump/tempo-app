@@ -41,14 +41,20 @@
 
   .tempo {
     font-size: 4.5vw;
-    width: 5rem;
+    width: 10rem;
   }
 
-  .phase {
+  .containerPhase {
+    display: flex;
+  }
+
+  .labelPhase {
+    flex: 1; 
+  }
+
+  .tempoPhase {
     display: flex;
     text-align: center;
-    flex: 1;
-    flex-direction: column;
   }
 
   .round {

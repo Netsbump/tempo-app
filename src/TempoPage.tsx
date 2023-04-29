@@ -135,9 +135,12 @@ export const TempoPage: React.FC<TempoPageProps> = ({
       );
     } else {
       return tempo.map((value, index) => (
-        <span key={index} className={`${styles.phase} ${currentPhase === index ? styles.activePhase : styles.inactivePhase}`}>
-          {index % 2 === 0 ? 'WORK' : 'PAUSE'} {value} {index !== tempo.length - 1}
+        <div key={index} className={styles.containerPhase}>
+        <span className={styles.labelPhase}>{index % 2 === 0 ? 'WORK' : 'PAUSE'}</span>
+        <span key={`tempo-${index}`} className={`${styles.tempoPhase} ${currentPhase === index ? styles.activePhase : styles.inactivePhase}`}>
+          {value} {index !== tempo.length - 1}
         </span>
+        </div>
       ));
     }
 
