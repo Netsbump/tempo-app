@@ -24,8 +24,8 @@ export const Rest: React.FC<RestProps> = ({ initialTimeLeft, onRestEnd }) => {
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>Rest</h2>
-      <div className={styles.timeLeft}>{timeLeft} seconds left</div>
+      <h2 className={styles.title}>REST</h2>
+      <div className={styles.timeLeft}>{timeLeft}</div>
     </div>
   );
 };

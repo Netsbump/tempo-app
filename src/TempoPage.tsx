@@ -57,23 +57,22 @@ export const TempoPage: React.FC<TempoPageProps> = ({
     }
 
     if (!isWarmupDone) {
-      // setIsWarmupDone(true);
       return;
     }
-    
-    // Si on est en train de se reposer, on attend la fin du repos
+
     if (isResting) {
       return;
     }
 
     // Si le temps restant pour la phase en cours est épuisé
     if (timeLeft <= 0) {
+
       // On passe à la phase suivante (0, 1, 2, 3) en boucle
       const nextPhase = (currentPhase + 1) % 4;
 
       // Si la phase suivante est 0, cela signifie que nous avons terminé un phase complète
       if (nextPhase === 0) {
-        // On joue le son "endRepAudio" pour indiquer la fin d'un round
+        // On joue le son "endRepAudio" pour indiquer la fin d'une repetition
         playEndRep();
 
         // Si on a atteint le nombre de répétitions défini, on passe en mode de repos
@@ -84,12 +83,12 @@ export const TempoPage: React.FC<TempoPageProps> = ({
 
           // On incrémente le round 
           setCurrentRound((prevRound) => prevRound + 1);
-
+        
           // On remet les reps à zero
           setCurrentRepetition(1);
 
         } else {
-          // Sinon, on incrémente le compteur de reps 
+          // Sinon, on incrémente le compteur de repetitions 
           setCurrentRepetition((prevRepetition) => prevRepetition + 1);
         }
       } else {
@@ -134,14 +133,24 @@ export const TempoPage: React.FC<TempoPageProps> = ({
         />
       );
     } else {
-      return tempo.map((value, index) => (
-        <div key={index} className={styles.containerPhase}>
-        <span className={styles.labelPhase}>{index % 2 === 0 ? 'WORK' : 'PAUSE'}</span>
-        <span key={`tempo-${index}`} className={`${styles.tempoPhase} ${currentPhase === index ? styles.activePhase : styles.inactivePhase}`}>
-          {value} {index !== tempo.length - 1}
-        </span>
+      return (
+        <>
+        <article className={styles.rounds}>
+          REPS {currentRepetition - 1} / {repetitions}
+        </article>
+        <div className={styles.containerTempo}>
+          {tempo.map((value, index) => (
+          <div key={index} className={styles.containerPhase}>
+            <span className={styles.labelPhase}>{index % 2 === 0 ? 'WORK' : 'PAUSE'}</span>
+            <span key={`tempo-${index}`} className={`${styles.tempoPhase} ${currentPhase === index ? styles.activePhase : styles.inactivePhase}`}>
+              {value} {index !== tempo.length - 1}
+            </span>
+          </div>
+          ))}
         </div>
-      ));
+        <div className={styles.timer}>{timeLeft}</div>
+        </>
+      )
     }
 
       {/* Plus tard on fera aussi un composant d'affichage genre sucesss quand la session est terminée 
@@ -167,19 +176,13 @@ export const TempoPage: React.FC<TempoPageProps> = ({
       </header>
 
       <main className={styles.main}>    
-          <div className={styles.tempo}>{renderTempoElements()}</div>
-          <div className={styles.timer}>{timeLeft}</div>
+        <div className={styles.tempo}>{renderTempoElements()}</div>
       </main>
 
       <footer>
-        <div className={styles.footer}>
-          <div className={styles.rounds}>
-            REPS {currentRepetition - 1} / {repetitions}
-          </div>
-          <button className={styles.resetButton} onClick={onReset}>
-            RESET
-          </button>
-        </div>
+        <button className={styles.resetButton} onClick={onReset}>
+          RESET
+        </button>
       </footer>
 
       <audio ref={endRepAudio} src="/beep.mp3" />

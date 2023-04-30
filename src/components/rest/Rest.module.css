@@ -6,13 +6,15 @@
 }
   
 .title {
-font-size: 2.5rem;
-margin-bottom: 2rem;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #ff4136;
 }
 
-.timer {
-    font-size: 6rem;
+.timeLeft {
+    font-size: 12rem;
     font-weight: bold;
-    margin-bottom: 2rem;
+    width: 10rem;
+    text-align: center;
 }
 
