@@ -20,6 +20,8 @@
   }
 
   .main {
+    display: flex;
+    flex: 1;
     align-items: center;
     justify-content: center;
     flex-direction: column;
@@ -106,4 +108,14 @@
   
   .inactivePhase {
     color: #fff; /* Change to your desired inactive phase color */
+  }
+
+  .reps {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 3vw;
+    border: solid 2px;
+    border-radius: 25px;
+    padding: 15px;
   }

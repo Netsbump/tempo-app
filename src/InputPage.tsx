@@ -30,7 +30,7 @@ export const InputPage: React.FC<InputPageProps> = ({ onSubmit }) => {
         </div>
         <FullScreenButton />
       </header>
-      <main>
+      <main className={styles.main}>
         <div className={styles.inputsContainer}>
           {tempo.map((value, index) => (
             <CustomInput

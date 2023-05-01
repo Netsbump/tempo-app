@@ -135,8 +135,9 @@ export const TempoPage: React.FC<TempoPageProps> = ({
     } else {
       return (
         <>
-        <article className={styles.rounds}>
-          REPS {currentRepetition - 1} / {repetitions}
+        <article className={styles.reps}>
+          <div>{currentRepetition - 1} / {repetitions}</div>
+          <div>REPS</div>
         </article>
         <div className={styles.containerTempo}>
           {tempo.map((value, index) => (
