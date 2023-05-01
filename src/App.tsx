@@ -26,8 +26,8 @@ function App() {
                 <li onClick={() => handleAppSelect('tempo')}>TEMPO</li>
                 <li onClick={() => handleAppSelect('amrap')}>AMRAP</li>
                 <li onClick={() => handleAppSelect('tabata')}>TABATA</li>
-                <li onClick={() => handleAppSelect('tabata')}>FOR TIME</li>
-                <li onClick={() => handleAppSelect('tabata')}>EMOM</li>
+                <li onClick={() => handleAppSelect('fortime')}>FOR TIME</li>
+                <li onClick={() => handleAppSelect('emom')}>EMOM</li>
               </ul>
             </nav>
           </main>

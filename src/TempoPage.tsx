@@ -47,6 +47,7 @@ export const TempoPage: React.FC<TempoPageProps> = ({
     }
   };
 
+  // A revoir pour la gestion des tempo pause de 0
   const adjustedTempo = tempo.map((t) => (t === 0 ? 0.5 : t));
 
   useEffect(() => {
@@ -123,6 +124,14 @@ export const TempoPage: React.FC<TempoPageProps> = ({
       );
     }
 
+    if (isFinished) {
+      return (
+        <div className={styles.completed}>
+          {`${rounds} ROUNDS COMPLETED`}
+        </div>
+      );
+    }
+
     if (isResting) {
       return (
         <Rest
@@ -153,11 +162,6 @@ export const TempoPage: React.FC<TempoPageProps> = ({
         </>
       )
     }
-
-      {/* Plus tard on fera aussi un composant d'affichage genre sucesss quand la session est terminée 
-      <div className={styles.completed}>
-          {isFinished ? `${repetitions} SETS COMPLETED` : null}
-      </div> */}
   };
 
   return (
