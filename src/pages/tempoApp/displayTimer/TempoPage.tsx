@@ -1,24 +1,23 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 import styles from './TempoPage.module.css';
-import { Warmup } from './components/warmup/Warmup';
-import { Rest } from './components/rest/Rest';
-import { FullScreenButton } from './components/fullScreenButton/FullScreenButton';
+import { Warmup } from '../../../components/warmup/Warmup';
+import { Rest } from '../../../components/rest/Rest';
+import { FullScreenButton } from '../../../components/fullScreenButton/FullScreenButton';
 
-interface TempoPageProps {
+
+interface TempoPageState {
   tempo: [number, number, number, number];
   repetitions: number;
   rest: number;
   rounds: number;
-  onReset: () => void;
 }
 
-export const TempoPage: React.FC<TempoPageProps> = ({
-  tempo,
-  repetitions,
-  rest,
-  rounds,
-  onReset,
-}) => {
+export const TempoPage: React.FC = () => {
+  const location = useLocation();
+
+  const { tempo, repetitions, rest, rounds } = location.state as TempoPageState;
+
   // Phase du tempo en cours (il y en a 4 possibles)
   const [currentPhase, setCurrentPhase] = useState<number>(0);
   // Compteur pour l'affichage du temps restant
@@ -185,7 +184,7 @@ export const TempoPage: React.FC<TempoPageProps> = ({
       </main>
 
       <footer>
-        <button className={styles.resetButton} onClick={onReset}>
+        <button className={styles.resetButton}>
           RESET
         </button>
       </footer>

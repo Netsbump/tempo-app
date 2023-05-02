@@ -32,3 +32,15 @@ li:hover {
   color: #222;
 }
 
+a {
+  color: #fff;
+  text-decoration: none;
+}
+
+a:hover{
+  color: #222;
+}
+
+a:visited{
+  color: unset;
+}

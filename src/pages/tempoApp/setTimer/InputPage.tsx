@@ -1,25 +1,18 @@
 import React, { useState } from 'react';
-import { FullScreenButton } from './components/fullScreenButton/FullScreenButton';
-import { CustomInput } from './components/customInput/CustomInput';
+import { FullScreenButton } from '../../../components/fullScreenButton/FullScreenButton';
+import { CustomInput } from '../../../components/customInput/CustomInput';
 import styles from './InputPage.module.css';
+import { useNavigate  } from 'react-router-dom';
 
-interface InputPageProps {
-  onSubmit: (config: {
-    tempo: [number, number, number, number], 
-    repetitions: number, 
-    rest: number,
-    rounds: number
-  }) => void;
-}
-
-export const InputPage: React.FC<InputPageProps> = ({ onSubmit }) => {
+export const InputPage: React.FC = () => {
   const [tempo, setTempo] = useState<[number, number, number, number]>([4, 2, 2, 1]);
-  const [repetitions, setRepetitions] = useState<number>(2);
-  const [rest, setRest] = useState<number>(10);
+  const [repetitions, setRepetitions] = useState<number>(3);
+  const [rest, setRest] = useState<number>(30);
   const [rounds, setRounds] = useState<number>(2);
+  const navigate = useNavigate();
 
   const handleSubmit = () => {
-    onSubmit({tempo, repetitions, rest, rounds});
+    navigate('/tempo', { state: { tempo, repetitions, rest, rounds } });
   };
 
   return (
@@ -36,7 +29,7 @@ export const InputPage: React.FC<InputPageProps> = ({ onSubmit }) => {
             <CustomInput
               key={index}
               label={index % 2 === 0 ? "WORK" : "PAUSE"}
-              value={value}
+              defaultValue={value}
               onChange={(newValue) => {
                 const newTempo = [...tempo];
                 newTempo[index] = newValue;
@@ -49,19 +42,19 @@ export const InputPage: React.FC<InputPageProps> = ({ onSubmit }) => {
         <div className={styles.inputsContainer}>
           <CustomInput
             label="DO"
-            value={repetitions}
+            defaultValue={repetitions}
             onChange={setRepetitions}
             unit="REPS"
           />
           <CustomInput
             label="REST"
-            value={rest}
+            defaultValue={rest}
             onChange={setRest}
             unit="SECONDS"
           />
           <CustomInput
             label="FOR"
-            value={rounds}
+            defaultValue={rounds}
             onChange={setRounds}
             unit="ROUNDS"
           />

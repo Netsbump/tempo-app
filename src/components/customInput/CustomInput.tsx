@@ -1,14 +1,23 @@
-import React from 'react';
+import React, { useState }from 'react';
 import styles from './CustomInput.module.css';
 
 interface CustomInputProps {
   label: string;
-  value: number;
+  defaultValue: number;
   onChange: (value: number) => void;
   unit: string;
 }
 
-export const CustomInput: React.FC<CustomInputProps> = ({ label, value, onChange, unit }) => {
+export const CustomInput: React.FC<CustomInputProps> = ({ label, defaultValue, onChange, unit }) => {
+
+  const [value, setValue] = useState<number>(defaultValue);
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = Number(event.target.value);
+    setValue(newValue);
+    onChange(newValue);
+  };
+
   return (
     <div className={styles.inputWrapper}>
       <span className={styles.info}>{label}</span>
@@ -16,7 +25,7 @@ export const CustomInput: React.FC<CustomInputProps> = ({ label, value, onChange
         className={styles.input}
         type="number"
         value={value}
-        onChange={(e) => onChange(parseInt(e.target.value))}
+        onChange={handleChange}
       />
       <span className={styles.duration}>{unit}</span>
     </div>
