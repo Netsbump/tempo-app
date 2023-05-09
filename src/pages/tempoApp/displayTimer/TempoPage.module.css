@@ -43,16 +43,18 @@
 
   .tempo {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    width: 100%;
     justify-content: space-evenly;
+    border: solid 1px;
+    border-radius: 50%;
+    height: 30em;
+    width: 30em;
   }
 
   .containerTempo {
     display: flex;
-    flex-direction: column;
     font-size: 4.5vw;
-    flex: 0.5;
   }
 
   .containerPhase {
@@ -94,6 +96,7 @@
     color: #fff;
     cursor: pointer;
     transition: all 0.2s;
+    border-radius: 25px;
   }
   
   .resetButton:hover {
@@ -107,7 +110,7 @@
   }
   
   .inactivePhase {
-    color: #fff; /* Change to your desired inactive phase color */
+    color: #fff; 
   }
 
   .reps {
@@ -115,7 +118,50 @@
     flex-direction: column;
     align-items: center;
     font-size: 3vw;
-    border: solid 2px;
-    border-radius: 25px;
-    padding: 15px;
   }
+
+  footer{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  /*test countdown */
+  .countdown {
+    height: 40px;
+    width: 40px;
+    text-align: center;
+  }
+  
+  .countdownNumber {
+    color: white;
+    display: inline-block;
+    line-height: 40px;
+  }
+  
+  .svgCircle {
+    width: 40px;
+    height: 40px;
+    transform: rotateY(-180deg) rotateZ(-90deg);
+  }
+  
+  .svgCircle circle {
+    stroke-dasharray: 113px;
+    stroke-dashoffset: 0px;
+    stroke-linecap: round;
+    stroke-width: 2px;
+    stroke: white;
+    fill: none;
+    animation: countdown var(--timeLeft) linear infinite forwards;
+  }
+  
+  @keyframes countdown {
+    from {
+      stroke-dashoffset: 0px;
+    }
+    to {
+      stroke-dashoffset: 113px;
+    }
+  }
+
+  

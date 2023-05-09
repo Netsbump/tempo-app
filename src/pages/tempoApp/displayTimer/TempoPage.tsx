@@ -5,6 +5,10 @@ import { Warmup } from '../../../components/warmup/Warmup';
 import { Rest } from '../../../components/rest/Rest';
 import { FullScreenButton } from '../../../components/fullScreenButton/FullScreenButton';
 
+// Déclaration d'interface pour variable css en ts
+interface CSSCustomProperties extends React.CSSProperties {
+  '--timeLeft': string;
+}
 
 interface TempoPageState {
   tempo: [number, number, number, number];
@@ -77,7 +81,7 @@ export const TempoPage: React.FC = () => {
 
         // Si on a atteint le nombre de répétitions défini, on passe en mode de repos
         if (currentRepetition === repetitions) {
-
+          
           setIsResting(true);
           setTimeLeft(rest);
 
@@ -109,7 +113,6 @@ export const TempoPage: React.FC = () => {
     // On nettoie l'intervalle lorsqu'on quitte le composant ou lorsqu'on passe à une autre phase
     return () => clearInterval(interval);
   }, [currentPhase, timeLeft, adjustedTempo, currentRepetition, repetitions, currentRound, rounds, isWarmupDone, isResting, rest, playBeep, playEndRep]);
-
   
   const renderTempoElements = () => {
     if (!isWarmupDone) {
@@ -142,15 +145,17 @@ export const TempoPage: React.FC = () => {
       );
     } else {
       return (
-        <>
-        <article className={styles.reps}>
-          <div>{currentRepetition - 1} / {repetitions}</div>
-          <div>REPS</div>
-        </article>
+        <> 
+        <div className={styles.countdown}>
+          <div className={styles.countdownNumber}>{timeLeft}</div>
+          <svg className={styles.svgCircle} style={{ "--timeLeft": `${timeLeft}s` } as CSSCustomProperties}>
+            <circle r="18" cx="20" cy="20"></circle>
+          </svg>
+        </div>
         <div className={styles.containerTempo}>
           {tempo.map((value, index) => (
           <div key={index} className={styles.containerPhase}>
-            <span className={styles.labelPhase}>{index % 2 === 0 ? 'WORK' : 'PAUSE'}</span>
+            {/* <span className={styles.labelPhase}>{index % 2 === 0 ? 'WORK' : 'PAUSE'}</span> */}
             <span key={`tempo-${index}`} className={`${styles.tempoPhase} ${currentPhase === index ? styles.activePhase : styles.inactivePhase}`}>
               {value} {index !== tempo.length - 1}
             </span>
@@ -158,6 +163,10 @@ export const TempoPage: React.FC = () => {
           ))}
         </div>
         <div className={styles.timer}>{timeLeft}</div>
+        <article className={styles.reps}>
+          <div>{currentRepetition - 1} / {repetitions}</div>
+          <div>REPS</div>
+        </article>
         </>
       )
     }
@@ -184,6 +193,9 @@ export const TempoPage: React.FC = () => {
       </main>
 
       <footer>
+        <button className={styles.resetButton}>
+          PAUSE
+        </button>
         <button className={styles.resetButton}>
           RESET
         </button>
