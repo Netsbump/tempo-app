@@ -81,7 +81,7 @@ export const TempoPage: React.FC = () => {
 
         // Si on a atteint le nombre de répétitions défini, on passe en mode de repos
         if (currentRepetition === repetitions) {
-          
+
           setIsResting(true);
           setTimeLeft(rest);
 
@@ -118,7 +118,7 @@ export const TempoPage: React.FC = () => {
     if (!isWarmupDone) {
       return (
         <Warmup
-          initialTimeLeft={3}
+          initialTimeLeft={10}
           onWarmupEnd={() => {
             setIsWarmupDone(true);
           }}
