@@ -7,7 +7,7 @@ import { FullScreenButton } from '../../../components/fullScreenButton/FullScree
 
 // Déclaration d'interface pour variable css en ts
 interface CSSCustomProperties extends React.CSSProperties {
-  '--timeLeft': string;
+  '--tempoAnimation': string;
 }
 
 interface TempoPageState {
@@ -35,6 +35,8 @@ export const TempoPage: React.FC = () => {
   const [isResting, setIsResting] = useState(false);
   // Etat de l'exercice complet 
   const [isFinished, setIsFinished] = useState<boolean>(false);
+  // Etat pour la durée de l'animation css du cercle 
+  const [animationDuration, setAnimationDuration] = useState<number>(tempo[currentPhase]);
 
   // Gestion de l'audio
   const beepAudio = useRef<HTMLAudioElement | null>(null);
@@ -103,6 +105,10 @@ export const TempoPage: React.FC = () => {
       // On met à jour la phase en cours et le temps restant pour la phase suivante
       setCurrentPhase(nextPhase);
       setTimeLeft(adjustedTempo[nextPhase]);
+
+      // Mettez à jour la durée de l'animation lorsque vous changez de phase
+      setAnimationDuration(adjustedTempo[nextPhase]);
+
     }
 
     // On met en place un intervalle pour décompter le temps restant toutes les secondes
@@ -112,13 +118,13 @@ export const TempoPage: React.FC = () => {
 
     // On nettoie l'intervalle lorsqu'on quitte le composant ou lorsqu'on passe à une autre phase
     return () => clearInterval(interval);
-  }, [currentPhase, timeLeft, adjustedTempo, currentRepetition, repetitions, currentRound, rounds, isWarmupDone, isResting, rest, playBeep, playEndRep]);
+  }, [currentPhase, timeLeft, adjustedTempo, currentRepetition, repetitions, currentRound, rounds, isWarmupDone, isResting, rest, animationDuration, setAnimationDuration, playBeep, playEndRep]);
   
   const renderTempoElements = () => {
     if (!isWarmupDone) {
       return (
         <Warmup
-          initialTimeLeft={10}
+          initialTimeLeft={3}
           onWarmupEnd={() => {
             setIsWarmupDone(true);
           }}
@@ -145,28 +151,33 @@ export const TempoPage: React.FC = () => {
       );
     } else {
       return (
-        <> 
-        <div className={styles.countdown}>
-          <div className={styles.countdownNumber}>{timeLeft}</div>
-          <svg className={styles.svgCircle} style={{ "--timeLeft": `${timeLeft}s` } as CSSCustomProperties}>
-            <circle r="18" cx="20" cy="20"></circle>
-          </svg>
-        </div>
-        <div className={styles.containerTempo}>
-          {tempo.map((value, index) => (
-          <div key={index} className={styles.containerPhase}>
-            {/* <span className={styles.labelPhase}>{index % 2 === 0 ? 'WORK' : 'PAUSE'}</span> */}
-            <span key={`tempo-${index}`} className={`${styles.tempoPhase} ${currentPhase === index ? styles.activePhase : styles.inactivePhase}`}>
-              {value} {index !== tempo.length - 1}
-            </span>
+        <>
+            <svg 
+              key={`tempoAnimation-${currentPhase}`} 
+              className={styles.svgCircle} 
+              style={{ "--tempoAnimation": `${animationDuration}s` } as CSSCustomProperties}
+            > 
+            <circle r="45" cx="50" cy="50" transform="scale(5)"></circle>
+            </svg>
+          <div className={styles.containerTempo}>
+            {tempo.map((value, index) => (
+            <div key={index} className={styles.containerPhase}>
+              {/* <span className={styles.labelPhase}>{index % 2 === 0 ? 'WORK' : 'PAUSE'}</span> */}
+              <span key={`tempo-${index}`} className={`${styles.tempoPhase} ${currentPhase === index ? styles.activePhase : styles.inactivePhase}`}>
+                {value} {index !== tempo.length - 1}
+              </span>
+            </div>
+            ))}
           </div>
-          ))}
-        </div>
-        <div className={styles.timer}>{timeLeft}</div>
-        <article className={styles.reps}>
-          <div>{currentRepetition - 1} / {repetitions}</div>
-          <div>REPS</div>
-        </article>
+          <div className={styles.timer}>{timeLeft}</div>
+          <article className={styles.reps}>
+            <div>REPS</div>
+            <div>
+             <span className={`${currentRepetition - 1 !== 0 ? styles.RepsDone : null}`}>{currentRepetition - 1}</span> 
+             <span>/</span> 
+             <span>{repetitions}</span> 
+            </div>
+          </article>
         </>
       )
     }
@@ -188,7 +199,7 @@ export const TempoPage: React.FC = () => {
         <FullScreenButton />
       </header>
 
-      <main className={styles.main}>    
+      <main className={styles.main}>  
         <div className={styles.tempo}>{renderTempoElements()}</div>
       </main>
 
