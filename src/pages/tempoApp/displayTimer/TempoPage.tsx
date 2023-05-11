@@ -153,20 +153,23 @@ export const TempoPage: React.FC = () => {
     } else {
       return (
         <>
-            <svg 
-              key={`tempoAnimation-${currentPhase}`} 
-              className={styles.svgCircle} 
-              style={{ "--tempoAnimation": `${animationDuration}s` } as CSSCustomProperties}
-            > 
-            <circle r="45" cx="50" cy="50" transform="scale(5)"></circle>
-            </svg>
+          <svg 
+            key={`tempoAnimation-${currentPhase}`} 
+            className={styles.svgCircle} 
+            style={{ "--tempoAnimation": `${animationDuration}s` } as CSSCustomProperties}
+          > 
+          <circle r="45" cx="50" cy="50" transform="scale(5)"></circle>
+          </svg>
           <div className={styles.containerTempo}>
             {tempo.map((value, index) => (
             <div key={index} className={styles.containerPhase}>
-              {/* <span className={styles.labelPhase}>{index % 2 === 0 ? 'WORK' : 'PAUSE'}</span> */}
               <span key={`tempo-${index}`} className={`${styles.tempoPhase} ${currentPhase === index ? styles.activePhase : styles.inactivePhase}`}>
                 {value} {index !== tempo.length - 1}
               </span>
+              {currentPhase === index 
+                ? <span key={`message-${index}`} className={styles.labelPhase}>{index % 2 === 0 ? 'WORK' : 'PAUSE'}</span> 
+                : null
+              }
             </div>
             ))}
           </div>

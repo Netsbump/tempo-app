@@ -51,8 +51,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
-    border: dotted 3px;
+    justify-content: center;
+    border: solid 2px;
     border-radius: 50%;
     height: 30em;
     width: 30em;
@@ -61,12 +61,14 @@
 
   .containerTempo {
     display: flex;
-    font-size: 2.5vw;
+    font-size: 1rem;
     z-index: 1;
+    margin-bottom: 2rem;
   }
 
   .labelPhase {
     flex: 1; 
+    text-align: center;
   }
 
   .round {
@@ -74,7 +76,7 @@
   }
 
   .completed { 
-    color: #32de84;
+    color: #80ed99;
     font-size: 5rem;
     text-align: center;
   }
@@ -85,11 +87,11 @@
     width: 10rem;
     text-align: center;
     z-index: 1;
-    /* color: #7CB9E8; */
   }
   
   .containerPhase {
     display: flex;
+    flex-direction: column;
   }
 
   .tempoPhase {
@@ -103,7 +105,8 @@
 
   .activePhase {
     /* color: #000; */
-    background-color: #7CB9E8;
+    /* background-color: #7CB9E8; */
+    background-color: #1a659e;
   }
   
   .inactivePhase {
@@ -114,11 +117,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-size: 2.5vw;
+    font-size: 1rem;
+    margin-top: 2rem;
   }
 
   .RepsDone{
-    color: #32de84;
+    color: #1a659e;
   }
 
   /* SVG Animation tempo */
@@ -136,7 +140,7 @@
     stroke-dashoffset: 0px;
     stroke-linecap: round;
     stroke-width: 2px;
-    stroke: #7CB9E8;
+    stroke: #1a659e;
     fill: none;
     animation: countdown var(--tempoAnimation) linear forwards 0s;
   }
