@@ -1,8 +1,5 @@
-.fullscreenButton {
-    /* font-size: 1.5vw; */
-    margin-right: 1.5rem;
-    padding: 0.5rem 1rem;
-    border: .15rem solid #fff;
-    background-color: transparent;
-    color: #fff;
-  }
+.img{
+  width: 30px;
+  height: 30px;
+  margin-right: 1.5rem;
+}

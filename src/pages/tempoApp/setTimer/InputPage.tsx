@@ -3,6 +3,7 @@ import { FullScreenButton } from '../../../components/fullScreenButton/FullScree
 import { CustomInput } from '../../../components/customInput/CustomInput';
 import styles from './InputPage.module.css';
 import { useNavigate  } from 'react-router-dom';
+import backImage from '../../../assets/img/arrow-back.svg'
 
 export const InputPage: React.FC = () => {
   const [tempo, setTempo] = useState<[number, number, number, number]>([4, 2, 2, 1]);
@@ -19,6 +20,7 @@ export const InputPage: React.FC = () => {
     <div className={styles.container}>
       <header className={styles.header}>
         <div className={styles.left}>
+          <img className={styles.img} src={backImage} alt='Back' onClick={() => window.history.back()} />
           <h1 className={styles.title}>TEMPO</h1>
         </div>
         <FullScreenButton />

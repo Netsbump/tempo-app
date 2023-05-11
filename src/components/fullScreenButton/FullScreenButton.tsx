@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './FullScreenButton.module.css';
+import fullScreen from '../../assets/img/full-screen.svg'
 
 export const FullScreenButton: React.FC = () => {
   const toggleFullScreen = () => {
@@ -11,6 +12,6 @@ export const FullScreenButton: React.FC = () => {
   };
 
   return (
-    <button onClick={toggleFullScreen} className={styles.fullscreenButton}>Full Screen</button>
+    <img className={styles.img} src={fullScreen} alt='Fullscreen' onClick={toggleFullScreen} />
   );
 };

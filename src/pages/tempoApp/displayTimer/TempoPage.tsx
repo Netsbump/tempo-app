@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import styles from './TempoPage.module.css';
+import backImage from '../../../assets/img/arrow-back.svg'
 import { Warmup } from '../../../components/warmup/Warmup';
 import { Rest } from '../../../components/rest/Rest';
 import { FullScreenButton } from '../../../components/fullScreenButton/FullScreenButton';
@@ -188,10 +189,11 @@ export const TempoPage: React.FC = () => {
 
       <header className={styles.header}>
         <div className={styles.left}>
+          <img className={styles.img} src={backImage} alt='Back' onClick={() => window.history.back()} />
           <h1 className={styles.title}>TEMPO</h1>
           <div className={styles.info}>
             <span>- ROUNDS</span> 
-            <span className={styles.round}>{currentRound}</span>
+            <span className={styles.round}>{currentRound <= rounds ? currentRound : rounds}</span>
             <span>OF</span>
             <span>{rounds}</span>
           </div>
