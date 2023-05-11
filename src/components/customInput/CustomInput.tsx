@@ -13,7 +13,19 @@ export const CustomInput: React.FC<CustomInputProps> = ({ label, defaultValue, o
   const [value, setValue] = useState<number>(defaultValue);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = Number(event.target.value);
+
+    let newValue = Number(event.target.value);
+
+    // Vérification de la valeur minimale
+    if (newValue < 0 || isNaN(newValue)) {
+      newValue = 0;
+    }
+
+    // Vérification de la valeur maximale
+    if (newValue > 1000) {
+      newValue = 1000;
+    }
+
     setValue(newValue);
     onChange(newValue);
   };
@@ -26,6 +38,8 @@ export const CustomInput: React.FC<CustomInputProps> = ({ label, defaultValue, o
         type="number"
         value={value}
         onChange={handleChange}
+        min={0}
+        max={1000}
       />
       <span className={styles.duration}>{unit}</span>
     </div>
