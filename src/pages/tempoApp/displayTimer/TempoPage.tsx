@@ -84,7 +84,7 @@ export const TempoPage: React.FC = () => {
 
         // Si on a atteint le nombre de répétitions défini, on passe en mode de repos
         if (currentRepetition === repetitions) {
-
+          playEndRep();
           setIsResting(true);
           setTimeLeft(rest);
 
@@ -153,31 +153,34 @@ export const TempoPage: React.FC = () => {
     } else {
       return (
         <>
-          <svg 
-            key={`tempoAnimation-${currentPhase}`} 
-            className={styles.svgCircle} 
-            style={{ "--tempoAnimation": `${animationDuration}s` } as CSSCustomProperties}
-          > 
-          <circle r="45" cx="50" cy="50" transform="scale(5)"></circle>
-          </svg>
           <div className={styles.containerTempo}>
             {tempo.map((value, index) => (
-            <div key={index} className={styles.containerPhase}>
-              <span key={`tempo-${index}`} className={`${styles.tempoPhase} ${currentPhase === index ? styles.activePhase : styles.inactivePhase}`}>
-                {value} {index !== tempo.length - 1}
-              </span>
-              {currentPhase === index 
-                ? <span key={`message-${index}`} className={styles.labelPhase}>{index % 2 === 0 ? 'WORK' : 'PAUSE'}</span> 
-                : null
-              }
-            </div>
+              <div key={index} className={styles.containerPhase}>
+                <span key={`tempo-${index}`} className={`${styles.tempoPhase} ${currentPhase === index ? styles.activePhase : styles.inactivePhase}`}>
+                  {value} {index !== tempo.length - 1}
+                </span>
+                {currentPhase === index 
+                  ? <span key={`message-${index}`} className={styles.labelPhase}>{index % 2 === 0 ? 'WORK' : 'PAUSE'}</span> 
+                  : null
+                }
+              </div>
             ))}
           </div>
-          <div className={styles.timer}>{timeLeft}</div>
+          <div className={styles.timer}>
+            <svg 
+              key={`tempoAnimation-${currentPhase}`} 
+              className={styles.svgCircle} 
+              style={{ "--tempoAnimation": `${animationDuration}s` } as CSSCustomProperties}
+              viewBox="0 0 100 100"
+            > 
+            <circle r="45" cx="50" cy="50"></circle>
+            </svg>
+            {timeLeft}
+          </div>
           <article className={styles.reps}>
             <div>REPS</div>
-            <div>
-             <span className={`${currentRepetition - 1 !== 0 ? styles.RepsDone : null}`}>{currentRepetition - 1}</span> 
+            <div className={styles.repsCount}>
+             <span className={`${currentRepetition - 1 !== 0 ? styles.repsDone : null}`}>{currentRepetition - 1}</span> 
              <span>/</span> 
              <span>{repetitions}</span> 
             </div>
@@ -208,11 +211,11 @@ export const TempoPage: React.FC = () => {
         <div className={styles.tempo}>{renderTempoElements()}</div>
       </main>
 
-      <footer>
-        <button className={styles.resetButton}>
+      <footer className={styles.footer}>
+        <button className={styles.actionButton}>
           PAUSE
         </button>
-        <button className={styles.resetButton}>
+        <button className={styles.actionButton}>
           RESET
         </button>
       </footer>
