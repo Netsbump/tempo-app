@@ -6,6 +6,6 @@ export default defineConfig({
   plugins: [react()],
   base: '/tempo-app/', 
   build: {
-    outDir: 'dist', 
+    outDir: 'docs', 
   },
 })
