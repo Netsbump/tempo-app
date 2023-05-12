@@ -4,15 +4,22 @@ import styles from './Warmup.module.css';
 interface WarmupProps {
   initialTimeLeft: number;
   onWarmupEnd: () => void;
+  playBeep: () => void;
+  playEndRep: () => void;
 }
 
-export const Warmup: React.FC<WarmupProps> = ({ initialTimeLeft, onWarmupEnd }) => {
+export const Warmup: React.FC<WarmupProps> = ({ initialTimeLeft, onWarmupEnd, playBeep, playEndRep }) => {
   const [remainingTime, setRemainingTime] = useState(initialTimeLeft);
 
   useEffect(() => {
     if (remainingTime <= 0) {
+      playEndRep();
       onWarmupEnd();
       return;
+    }
+
+    if ([3, 2, 1].includes(remainingTime)) {
+      playBeep();
     }
 
     const warmupInterval = setInterval(() => {
@@ -20,7 +27,7 @@ export const Warmup: React.FC<WarmupProps> = ({ initialTimeLeft, onWarmupEnd }) 
     }, 1000);
 
     return () => clearInterval(warmupInterval);
-  }, [remainingTime, onWarmupEnd]);
+  }, [remainingTime, onWarmupEnd, playBeep, playEndRep]);
 
   return (
     <div className={styles.container}>

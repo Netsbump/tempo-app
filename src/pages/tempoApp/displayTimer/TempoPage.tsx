@@ -77,14 +77,20 @@ export const TempoPage: React.FC = () => {
       // On passe à la phase suivante (0, 1, 2, 3) en boucle
       const nextPhase = (currentPhase + 1) % 4;
 
+      // Pour toutes les phases (0, 1, 2, 3), on joue le son "beepAudio" pour indiquer le changement de phase
+      playBeep();
+
       // Si la phase suivante est 0, cela signifie que nous avons terminé un phase complète
       if (nextPhase === 0) {
-        // On joue le son "endRepAudio" pour indiquer la fin d'une repetition
-        playEndRep();
 
         // Si on a atteint le nombre de répétitions défini, on passe en mode de repos
         if (currentRepetition === repetitions) {
-          playEndRep();
+
+          setTimeout(() => {
+            // On joue le son "endRepAudio" pour indiquer la fin d'une repetition
+            playEndRep();
+          }, 300);
+
           setIsResting(true);
           setTimeLeft(rest);
 
@@ -98,10 +104,7 @@ export const TempoPage: React.FC = () => {
           // Sinon, on incrémente le compteur de repetitions 
           setCurrentRepetition((prevRepetition) => prevRepetition + 1);
         }
-      } else {
-        // Pour les autres phases (1, 2, 3), on joue le son "beepAudio" pour indiquer le changement de phase
-        playBeep();
-      }
+      } 
 
       // On met à jour la phase en cours et le temps restant pour la phase suivante
       setCurrentPhase(nextPhase);
@@ -125,7 +128,9 @@ export const TempoPage: React.FC = () => {
     if (!isWarmupDone) {
       return (
         <Warmup
-          initialTimeLeft={3}
+          initialTimeLeft={10}
+          playBeep={playBeep}
+          playEndRep={playEndRep}
           onWarmupEnd={() => {
             setIsWarmupDone(true);
           }}
@@ -145,6 +150,8 @@ export const TempoPage: React.FC = () => {
       return (
         <Rest
           initialTimeLeft={rest}
+          playBeep={playBeep}
+          playEndRep={playEndRep}
           onRestEnd={() => {
             setIsResting(false);
           }}
