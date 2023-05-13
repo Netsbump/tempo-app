@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  createHashRouter,
   createBrowserRouter,
   createRoutesFromElements,
   RouterProvider,
@@ -39,16 +40,30 @@ const Menu : React.FC = () => {
   )
 } 
 
-const router = createBrowserRouter(
-  createRoutesFromElements(
-    <>
-    <Route path="/" element={<Menu />}/>
-    <Route path="tempo-input" element={<InputPage />} />
-    <Route path="tempo" element={<TempoPage />} />
-    {/* ... autres routes */}
-    </>
-  )
-);
+// const router = createBrowserRouter(
+//   createRoutesFromElements(
+//     <>
+//     <Route path="/" element={<Menu />}/>
+//     <Route path="tempo-input" element={<InputPage />} />
+//     <Route path="tempo" element={<TempoPage />} />
+//     </>
+//   )
+// );
+
+const router = createHashRouter([
+  {
+    path: "/",
+    element: <Menu />,
+  },
+  {
+    path: "tempo-input",
+    element: <InputPage />,
+  },
+  {
+    path: "tempo",
+    element: <TempoPage />,
+  }
+]);
 
 function App() {
   return (
