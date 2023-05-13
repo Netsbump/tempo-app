@@ -5,8 +5,10 @@ import backImage from '../../../assets/img/arrow-back.svg'
 import { Warmup } from '../../../components/warmup/Warmup';
 import { Rest } from '../../../components/rest/Rest';
 import { FullScreenButton } from '../../../components/fullScreenButton/FullScreenButton';
-import beepSound from '../../../assets/sounds/beep.mp3';
+import longBeepSound from '../../../assets/sounds/long-beep.wav';
 import shortBeepSound from '../../../assets/sounds/short-beep.mp3';
+
+
 
 // Déclaration d'interface pour variable css en ts
 interface CSSCustomProperties extends React.CSSProperties {
@@ -46,11 +48,13 @@ export const TempoPage: React.FC = () => {
   const endRepAudio = useRef<HTMLAudioElement | null>(null);
   const playBeep = () => {
     if (beepAudio.current) {
+      beepAudio.current.volume = 0.1;
       beepAudio.current.play();
     }
   };
   const playEndRep = () => {
     if (endRepAudio.current) {
+      endRepAudio.current.volume = 0.1;
       endRepAudio.current.play();
     }
   };
@@ -229,7 +233,7 @@ export const TempoPage: React.FC = () => {
         </button>
       </footer>
 
-      <audio ref={endRepAudio} src={beepSound} />
+      <audio ref={endRepAudio} src={longBeepSound} />
       <audio ref={beepAudio} src={shortBeepSound}  />
     </div>
   );
