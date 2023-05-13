@@ -5,6 +5,8 @@ import backImage from '../../../assets/img/arrow-back.svg'
 import { Warmup } from '../../../components/warmup/Warmup';
 import { Rest } from '../../../components/rest/Rest';
 import { FullScreenButton } from '../../../components/fullScreenButton/FullScreenButton';
+import beepSound from '../../../assets/sounds/beep.mp3';
+import shortBeepSound from '../../../assets/sounds/short-beep.mp3';
 
 // Déclaration d'interface pour variable css en ts
 interface CSSCustomProperties extends React.CSSProperties {
@@ -227,8 +229,8 @@ export const TempoPage: React.FC = () => {
         </button>
       </footer>
 
-      <audio ref={endRepAudio} src="/beep.mp3" />
-      <audio ref={beepAudio} src="/short-beep.mp3" />
+      <audio ref={endRepAudio} src={beepSound} />
+      <audio ref={beepAudio} src={shortBeepSound}  />
     </div>
   );
 };
