@@ -38,6 +38,7 @@
     </li>
     <li><a href="#tempo-timer">Tempo Timer</a></li>
     <li><a href="#amrap-timer">AMRAP Timer</a></li>
+    <li><a href="#tabata-timer">TABATA Timer</a></li>
     <li><a href="#for-time-timer">For Time Timer</a></li>
     <li><a href="#emom-timer">EMOM Timer</a></li>
     <li><a href="#choices-building-application">Choices Building Application</a></li>
@@ -61,6 +62,7 @@ Currently, the application includes five timer types:
 
  - Tempo Timer
  - AMRAP (As Many Rounds As Possible) Timer
+ - TABATA Timer
  - For Time Timer
  - EMOM (Every Minute On The Minute) Timer
 
@@ -79,6 +81,14 @@ currently functional but requires improvements
 
 <!-- AMRAP TIMER -->
 ## AMRAP Timer
+
+<aside>
+under development
+</aside>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- TABATA TIMER -->
+## TABATA Timer
 
 <aside>
 under development
