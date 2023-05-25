@@ -1,4 +1,3 @@
-# tempo-app #
 
 <a name="readme-top"></a>
 
