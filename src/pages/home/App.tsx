@@ -6,8 +6,8 @@ import {
   Link,
 } from 'react-router-dom';
 import { FullScreenButton } from '../../components/fullScreenButton/FullScreenButton';
-import { InputPage } from '../tempoApp/setTimer/InputPage';
-import { TempoPage } from '../tempoApp/displayTimer/TempoPage';
+import { InputPage } from '../setTimer/InputPage';
+import { TempoPage } from '../tempoApp/TempoPage';
 import styles from './App.module.css';
 
 const Menu : React.FC = () => {
@@ -52,7 +52,7 @@ const router = createHashRouter([
   },
   {
     path: "tempo-input",
-    element: <InputPage />,
+    element: <InputPage type="tempo"/>,
   },
   {
     path: "tempo",

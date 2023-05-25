@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import styles from './TempoPage.module.css';
-import backImage from '../../../assets/img/arrow-back.svg'
-import { Warmup } from '../../../components/warmup/Warmup';
-import { Rest } from '../../../components/rest/Rest';
-import { FullScreenButton } from '../../../components/fullScreenButton/FullScreenButton';
-import longBeepSound from '../../../assets/sounds/long-beep.wav';
-import shortBeepSound from '../../../assets/sounds/short-beep.mp3';
+import backImage from '../../assets/img/arrow-back.svg'
+import { Warmup } from '../../components/warmup/Warmup';
+import { Rest } from '../../components/rest/Rest';
+import { FullScreenButton } from '../../components/fullScreenButton/FullScreenButton';
+import longBeepSound from '../../assets/sounds/long-beep.wav';
+import shortBeepSound from '../../assets/sounds/short-beep.mp3';
 
 interface CSSCustomProperties extends React.CSSProperties {
   '--tempoAnimation': string;

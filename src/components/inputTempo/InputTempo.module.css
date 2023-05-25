@@ -1,0 +1,14 @@
+.inputsContainer{
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+@media (max-width: 720px) {
+    .inputsContainer{
+        display: flex;
+        flex-direction: column;
+        row-gap: 50px;
+    }
+}
