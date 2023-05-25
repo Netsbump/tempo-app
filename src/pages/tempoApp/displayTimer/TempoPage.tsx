@@ -8,9 +8,6 @@ import { FullScreenButton } from '../../../components/fullScreenButton/FullScree
 import longBeepSound from '../../../assets/sounds/long-beep.wav';
 import shortBeepSound from '../../../assets/sounds/short-beep.mp3';
 
-
-
-// Déclaration d'interface pour variable css en ts
 interface CSSCustomProperties extends React.CSSProperties {
   '--tempoAnimation': string;
 }
@@ -23,35 +20,37 @@ interface TempoPageState {
 }
 
 export const TempoPage: React.FC = () => {
-  const location = useLocation();
 
+  const location = useLocation();
   const { tempo, repetitions, rest, rounds } = location.state as TempoPageState;
 
-  // Phase du tempo en cours (il y en a 4 possibles)
+  // Current phase, remaining time, round, and repetition counters
   const [currentPhase, setCurrentPhase] = useState<number>(0);
-  // Compteur pour l'affichage du temps restant
   const [timeLeft, setTimeLeft] = useState(tempo[currentPhase]);
-  // Compteur du nombre de rounds
   const [currentRound, setCurrentRound] = useState(1);
-  // Compteur du nombre de repetitions 
   const [currentRepetition, setCurrentRepetition] = useState(1);
+
+  // Status flags for warmup, rest, and completion
   const [isWarmupDone, setIsWarmupDone] = useState(false);
-  // Etat du rest pour l'affichage du composant 
   const [isResting, setIsResting] = useState(false);
-  // Etat de l'exercice complet 
   const [isFinished, setIsFinished] = useState<boolean>(false);
-  // Etat pour la durée de l'animation css du cercle 
+
+  // Animation duration state
   const [animationDuration, setAnimationDuration] = useState<number>(tempo[currentPhase]);
 
-  // Gestion de l'audio
+  // Audio refs
   const beepAudio = useRef<HTMLAudioElement | null>(null);
   const endRepAudio = useRef<HTMLAudioElement | null>(null);
+
+  // Play beep sound
   const playBeep = () => {
     if (beepAudio.current) {
       beepAudio.current.volume = 0.1;
       beepAudio.current.play();
     }
   };
+
+  // Play end rep sound
   const playEndRep = () => {
     if (endRepAudio.current) {
       endRepAudio.current.volume = 0.1;
@@ -59,11 +58,12 @@ export const TempoPage: React.FC = () => {
     }
   };
 
-  // A revoir pour la gestion des tempo pause de 0
+  // Adjust tempo for zero values
   const adjustedTempo = tempo.map((t) => (t === 0 ? 0.5 : t));
-
+ 
+  // Effect for tracking and controlling phase changes
   useEffect(() => {
-    // Si l'exercice est terminé, on retourne sur inputPage.tsx
+
     if (currentRound > rounds) {
       setIsFinished(true);
       return;
@@ -77,56 +77,43 @@ export const TempoPage: React.FC = () => {
       return;
     }
 
-    // Si le temps restant pour la phase en cours est épuisé
     if (timeLeft <= 0) {
 
-      // On passe à la phase suivante (0, 1, 2, 3) en boucle
       const nextPhase = (currentPhase + 1) % 4;
 
-      // Pour toutes les phases (0, 1, 2, 3), on joue le son "beepAudio" pour indiquer le changement de phase
       playBeep();
 
-      // Si la phase suivante est 0, cela signifie que nous avons terminé un phase complète
       if (nextPhase === 0) {
 
-        // Si on a atteint le nombre de répétitions défini, on passe en mode de repos
         if (currentRepetition === repetitions) {
 
           setTimeout(() => {
-            // On joue le son "endRepAudio" pour indiquer la fin d'une repetition
             playEndRep();
           }, 300);
 
           setIsResting(true);
           setTimeLeft(rest);
 
-          // On incrémente le round 
           setCurrentRound((prevRound) => prevRound + 1);
         
-          // On remet les reps à zero
           setCurrentRepetition(1);
 
         } else {
-          // Sinon, on incrémente le compteur de repetitions 
           setCurrentRepetition((prevRepetition) => prevRepetition + 1);
         }
       } 
 
-      // On met à jour la phase en cours et le temps restant pour la phase suivante
       setCurrentPhase(nextPhase);
       setTimeLeft(adjustedTempo[nextPhase]);
 
-      // Mettez à jour la durée de l'animation lorsque vous changez de phase
       setAnimationDuration(adjustedTempo[nextPhase]);
 
     }
 
-    // On met en place un intervalle pour décompter le temps restant toutes les secondes
     const interval = setInterval(() => {
       setTimeLeft((prevTimeLeft) => prevTimeLeft - 1);
     }, 1000);
 
-    // On nettoie l'intervalle lorsqu'on quitte le composant ou lorsqu'on passe à une autre phase
     return () => clearInterval(interval);
   }, [currentPhase, timeLeft, adjustedTempo, currentRepetition, repetitions, currentRound, rounds, isWarmupDone, isResting, rest, animationDuration, setAnimationDuration, playBeep, playEndRep]);
   
