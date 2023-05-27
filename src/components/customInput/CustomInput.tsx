@@ -16,12 +16,12 @@ export const CustomInput: React.FC<CustomInputProps> = ({ label, defaultValue, o
 
     let newValue = Number(event.target.value);
 
-    // Vérification de la valeur minimale
+    // Check for minimum value
     if (newValue < 0 || isNaN(newValue)) {
       newValue = 0;
     }
 
-    // Vérification de la valeur maximale
+    // Check for maximum value
     if (newValue > 1000) {
       newValue = 1000;
     }
@@ -40,6 +40,8 @@ export const CustomInput: React.FC<CustomInputProps> = ({ label, defaultValue, o
         onChange={handleChange}
         min={0}
         max={1000}
+        pattern="\d*"
+        inputMode="numeric"
       />
       <span className={styles.duration}>{unit}</span>
     </div>

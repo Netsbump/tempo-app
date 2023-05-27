@@ -177,7 +177,7 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    column-gap: 10em;
+    column-gap: 4rem;
     margin-bottom: 1rem;
   }
 
