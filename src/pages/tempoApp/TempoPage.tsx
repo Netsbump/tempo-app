@@ -2,8 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import styles from './TempoPage.module.css';
 import backImage from '../../assets/img/arrow-back.svg'
-import soundOn from '../../assets/img/sound-on.svg'
-import soundOff from '../../assets/img/sound-off.svg'
 import { Warmup } from '../../components/warmup/Warmup';
 import { Rest } from '../../components/rest/Rest';
 import { FullScreenButton } from '../../components/fullScreenButton/FullScreenButton';
