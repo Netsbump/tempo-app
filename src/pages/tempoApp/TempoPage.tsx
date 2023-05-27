@@ -2,9 +2,12 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import styles from './TempoPage.module.css';
 import backImage from '../../assets/img/arrow-back.svg'
+import soundOn from '../../assets/img/sound-on.svg'
+import soundOff from '../../assets/img/sound-off.svg'
 import { Warmup } from '../../components/warmup/Warmup';
 import { Rest } from '../../components/rest/Rest';
 import { FullScreenButton } from '../../components/fullScreenButton/FullScreenButton';
+import { VolumeAction } from '../../components/volumeAction/VolumeAction';
 import longBeepSound from '../../assets/sounds/long-beep.wav';
 import shortBeepSound from '../../assets/sounds/short-beep.mp3';
 
@@ -30,10 +33,11 @@ export const TempoPage: React.FC = () => {
   const [currentRound, setCurrentRound] = useState(1);
   const [currentRepetition, setCurrentRepetition] = useState(1);
 
-  // Status flags for warmup, rest, and completion
+  // Status flags for warmup, rest, completion and soundEnabled
   const [isWarmupDone, setIsWarmupDone] = useState(false);
   const [isResting, setIsResting] = useState(false);
   const [isFinished, setIsFinished] = useState<boolean>(false);
+  const [isSoundEnabled, setIsSoundEnabled] = useState<boolean>(true);
 
   // Animation duration state
   const [animationDuration, setAnimationDuration] = useState<number>(tempo[currentPhase]);
@@ -44,7 +48,7 @@ export const TempoPage: React.FC = () => {
 
   // Play beep sound
   const playBeep = () => {
-    if (beepAudio.current) {
+    if (beepAudio.current && isSoundEnabled) {
       beepAudio.current.volume = 0.1;
       beepAudio.current.play();
     }
@@ -52,7 +56,7 @@ export const TempoPage: React.FC = () => {
 
   // Play end rep sound
   const playEndRep = () => {
-    if (endRepAudio.current) {
+    if (endRepAudio.current && isSoundEnabled) {
       endRepAudio.current.volume = 0.1;
       endRepAudio.current.play();
     }
@@ -215,6 +219,10 @@ export const TempoPage: React.FC = () => {
         <button className={styles.actionButton}>
           PAUSE
         </button>
+        <VolumeAction 
+          isSoundEnabled={isSoundEnabled} 
+          setIsSoundEnabled={setIsSoundEnabled} 
+        />
         <button className={styles.actionButton}>
           RESET
         </button>

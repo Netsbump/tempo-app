@@ -1,0 +1,12 @@
+.volumeAction{
+    justify-content: center;
+    display: flex;
+    padding: 0.5rem 0.5rem;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.img{
+    width: 30px;
+    height: 30px;
+}
