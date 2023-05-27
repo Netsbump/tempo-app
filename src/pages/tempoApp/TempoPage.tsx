@@ -64,7 +64,20 @@ export const TempoPage: React.FC = () => {
 
   // Adjust tempo for zero values
   const adjustedTempo = tempo.map((t) => (t === 0 ? 0.5 : t));
- 
+  
+  // Reset tempo 
+  const reset = () => {
+    setCurrentPhase(0);
+    setTimeLeft(tempo[0]);
+    setCurrentRound(1);
+    setCurrentRepetition(1);
+    setIsWarmupDone(false);
+    setIsResting(false);
+    setIsFinished(false);
+    setIsSoundEnabled(true);
+    setAnimationDuration(tempo[0]);
+  };
+
   // Effect for tracking and controlling phase changes
   useEffect(() => {
 
@@ -223,7 +236,7 @@ export const TempoPage: React.FC = () => {
           isSoundEnabled={isSoundEnabled} 
           setIsSoundEnabled={setIsSoundEnabled} 
         />
-        <button className={styles.actionButton}>
+        <button className={styles.actionButton} onClick={() => reset()}>
           RESET
         </button>
       </footer>

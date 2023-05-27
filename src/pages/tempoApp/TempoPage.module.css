@@ -179,6 +179,7 @@
     justify-content: center;
     column-gap: 4rem;
     margin-bottom: 1rem;
+    z-index: 1;
   }
 
   @media (max-width: 390px) {

@@ -19,6 +19,8 @@
     max-width: 6rem;
     flex: 1;
     border-radius: 15px;
+    -moz-appearance: textfield;
+    text-align: center;
 }
 
 .duration{
