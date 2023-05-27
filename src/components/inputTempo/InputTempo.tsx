@@ -2,9 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { CustomInput } from '../customInput/CustomInput';
 import styles from './InputTempo.module.css';
 
+type TempoState = {
+  tempo: [number, number, number, number];
+  repetitions: number;
+  rest: number;
+  rounds: number;
+};
+
 interface InputTempoProps {
-    onStateChange: (newState: any) => void; // Ajoutez la définition de cette prop ici
-  }
+  onStateChange: (newState: TempoState) => void;
+}
 
 export const InputTempo : React.FC<InputTempoProps> = ({ onStateChange }) => {
   const [tempo, setTempo] = useState<[number, number, number, number]>([4, 2, 2, 1]);
