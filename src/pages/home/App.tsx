@@ -13,7 +13,7 @@ import styles from './App.module.css';
 const Menu : React.FC = () => {
   return (
     <div className="App">
-      <header>
+      <header className={styles.header}>
         <FullScreenButton />
       </header>
       <main className={styles.main}>
