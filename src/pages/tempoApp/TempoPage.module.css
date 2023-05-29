@@ -117,6 +117,7 @@
     stroke: #fff;
     fill: none;
     animation: countdown var(--tempoAnimation) linear forwards 0s;
+    animation-play-state: var(--tempoAnimationState);
     animation-direction: reverse; 
   }
   @keyframes countdown {

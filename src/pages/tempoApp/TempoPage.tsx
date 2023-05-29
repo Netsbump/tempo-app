@@ -15,6 +15,7 @@ import shortBeepSound from '../../assets/sounds/short-beep.mp3';
 
 interface CSSCustomProperties extends React.CSSProperties {
   '--tempoAnimation': string;
+  '--tempoAnimationState': string;
 }
 
 interface TempoPageState {
@@ -191,7 +192,10 @@ export const TempoPage: React.FC = () => {
             <svg 
               key={`tempoAnimation-${currentPhase}`} 
               className={styles.svgCircle} 
-              style={{ "--tempoAnimation": `${animationDuration}s` } as CSSCustomProperties}
+              style={{ 
+                "--tempoAnimation": `${animationDuration}s`,
+                "--tempoAnimationState": isRunning ? 'running' : 'paused'
+              } as CSSCustomProperties}
               viewBox="0 0 100 100"
             > 
             <circle r="45" cx="50" cy="50"></circle>
