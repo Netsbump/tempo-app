@@ -2,6 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import styles from './TempoPage.module.css';
 import backImage from '../../assets/img/arrow-back.svg'
+import resetImage from '../../assets/img/clock-counter-clockwise.svg'
+import playImage from '../../assets/img/play.svg'
+import pauseImage from '../../assets/img/pause.svg'
 import { Warmup } from '../../components/warmup/Warmup';
 import { Rest } from '../../components/rest/Rest';
 import { FullScreenButton } from '../../components/fullScreenButton/FullScreenButton';
@@ -231,14 +234,18 @@ export const TempoPage: React.FC = () => {
 
       <footer className={styles.footer}>
       <button className={styles.actionButton} onClick={() => setIsRunning(!isRunning)}>
-        {isRunning ? "PAUSE" : "PLAY"}
+        {isRunning ? 
+          <img className={styles.img} src={pauseImage} alt='image pause action'/> 
+          : 
+          <img className={styles.img} src={playImage} alt='image play action'/> 
+        }
       </button>
         <VolumeAction 
           isSoundEnabled={isSoundEnabled} 
           setIsSoundEnabled={setIsSoundEnabled} 
         />
         <button className={styles.actionButton} onClick={() => reset()}>
-          RESET
+          <img className={styles.img} src={resetImage} alt='reset timer'/> 
         </button>
       </footer>
 

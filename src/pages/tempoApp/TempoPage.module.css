@@ -22,6 +22,7 @@
   .img{
     width: 30px;
     height: 30px;
+    cursor: pointer;
   }
 
   .main {
@@ -158,14 +159,13 @@
   }
 
   .actionButton {
-    font-size: 1.25em;
-    padding: 0.5rem 1rem;
-    border: 2px solid #fff;
-    background-color: transparent;
-    color: #fff;
+    justify-content: center;
+    display: flex;
+    padding: 0.5rem 0.5rem;
+    border-radius: 50%;
     cursor: pointer;
-    transition: all 0.2s;
-    border-radius: 25px;
+    background-color: white;
+    border: none;
   }
   
   .resetButton:hover {

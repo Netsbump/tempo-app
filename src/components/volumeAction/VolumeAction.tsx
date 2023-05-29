@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import soundOn from '../../assets/img/sound-on.svg'
-import soundOff from '../../assets/img/sound-off.svg'
+import soundOn from '../../assets/img/speaker-high.svg'
+import soundOff from '../../assets/img/speaker-x.svg'
 import styles from './VolumeAction.module.css';
 
 interface VolumeActionProps {
