@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styles from './Rest.module.css';
+import { usePlayPause } from '../../contexts/PlayPauseContext';
 
 interface RestProps {
   initialTimeLeft: number;
@@ -10,8 +11,12 @@ interface RestProps {
 
 export const Rest: React.FC<RestProps> = ({ initialTimeLeft, onRestEnd, playBeep, playEndRep }) => {
   const [timeLeft, setTimeLeft] = useState(initialTimeLeft);
+  const { isRunning } = usePlayPause();
 
   useEffect(() => {
+
+    if (!isRunning) return;
+
     if (timeLeft <= 0) {
       playEndRep();
       onRestEnd();
@@ -27,7 +32,7 @@ export const Rest: React.FC<RestProps> = ({ initialTimeLeft, onRestEnd, playBeep
     }, 1000);
 
     return () => clearTimeout(timer);
-  }, [timeLeft, onRestEnd, playBeep, playEndRep]);
+  }, [timeLeft, onRestEnd, playBeep, playEndRep, isRunning]);
 
   return (
     <div className={styles.container}>

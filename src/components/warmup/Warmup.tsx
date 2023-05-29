@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styles from './Warmup.module.css';
+import { usePlayPause } from '../../contexts/PlayPauseContext';
 
 interface WarmupProps {
   initialTimeLeft: number;
@@ -10,8 +11,12 @@ interface WarmupProps {
 
 export const Warmup: React.FC<WarmupProps> = ({ initialTimeLeft, onWarmupEnd, playBeep, playEndRep }) => {
   const [remainingTime, setRemainingTime] = useState(initialTimeLeft);
+  const { isRunning } = usePlayPause();
 
   useEffect(() => {
+
+    if (!isRunning) return;
+
     if (remainingTime <= 0) {
       playEndRep();
       onWarmupEnd();
@@ -27,7 +32,7 @@ export const Warmup: React.FC<WarmupProps> = ({ initialTimeLeft, onWarmupEnd, pl
     }, 1000);
 
     return () => clearInterval(warmupInterval);
-  }, [remainingTime, onWarmupEnd, playBeep, playEndRep]);
+  }, [remainingTime, onWarmupEnd, playBeep, playEndRep, isRunning]);
 
   return (
     <div className={styles.container}>

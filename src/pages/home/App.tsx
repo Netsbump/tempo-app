@@ -8,6 +8,7 @@ import {
 import { FullScreenButton } from '../../components/fullScreenButton/FullScreenButton';
 import { InputPage } from '../setTimer/InputPage';
 import { TempoPage } from '../tempoApp/TempoPage';
+import { PlayPauseProvider } from '../../contexts/PlayPauseContext';
 import styles from './App.module.css';
 
 const Menu : React.FC = () => {
@@ -56,7 +57,11 @@ const router = createHashRouter([
   },
   {
     path: "tempo",
-    element: <TempoPage />,
+    element: (
+      <PlayPauseProvider>
+        <TempoPage />
+      </PlayPauseProvider>
+    ),
   }
 ]);
 

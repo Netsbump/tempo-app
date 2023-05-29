@@ -6,6 +6,7 @@ import { Warmup } from '../../components/warmup/Warmup';
 import { Rest } from '../../components/rest/Rest';
 import { FullScreenButton } from '../../components/fullScreenButton/FullScreenButton';
 import { VolumeAction } from '../../components/volumeAction/VolumeAction';
+import { usePlayPause } from '../../contexts/PlayPauseContext';
 import longBeepSound from '../../assets/sounds/long-beep.wav';
 import shortBeepSound from '../../assets/sounds/short-beep.mp3';
 
@@ -36,6 +37,7 @@ export const TempoPage: React.FC = () => {
   const [isResting, setIsResting] = useState(false);
   const [isFinished, setIsFinished] = useState<boolean>(false);
   const [isSoundEnabled, setIsSoundEnabled] = useState<boolean>(true);
+  const { isRunning, setIsRunning } = usePlayPause();
 
   // Animation duration state
   const [animationDuration, setAnimationDuration] = useState<number>(tempo[currentPhase]);
@@ -78,6 +80,7 @@ export const TempoPage: React.FC = () => {
 
   // Effect for tracking and controlling phase changes
   useEffect(() => {
+    if (!isRunning) return;
 
     if (currentRound > rounds) {
       setIsFinished(true);
@@ -130,7 +133,7 @@ export const TempoPage: React.FC = () => {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [currentPhase, timeLeft, adjustedTempo, currentRepetition, repetitions, currentRound, rounds, isWarmupDone, isResting, rest, animationDuration, setAnimationDuration, playBeep, playEndRep]);
+  }, [isRunning ,currentPhase, timeLeft, adjustedTempo, currentRepetition, repetitions, currentRound, rounds, isWarmupDone, isResting, rest, animationDuration, setAnimationDuration, playBeep, playEndRep]);
   
   const renderTempoElements = () => {
     if (!isWarmupDone) {
@@ -227,9 +230,9 @@ export const TempoPage: React.FC = () => {
       </main>
 
       <footer className={styles.footer}>
-        <button className={styles.actionButton}>
-          PAUSE
-        </button>
+      <button className={styles.actionButton} onClick={() => setIsRunning(!isRunning)}>
+        {isRunning ? "PAUSE" : "PLAY"}
+      </button>
         <VolumeAction 
           isSoundEnabled={isSoundEnabled} 
           setIsSoundEnabled={setIsSoundEnabled} 
