@@ -1,11 +1,54 @@
 .info{
-    flex: 1;
     text-align: end;
+    width: 40px;
 }
 
 .inputWrapper {
     display: flex;
     align-items: center;
+    width: 100%;
+}
+
+.inputContainer {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+.button {
+    background-color: #111111; 
+    border: none;
+    color: #fca311;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px 2px;
+    cursor: pointer;
+    width: 26px;
+    height: 41px;
+    font-weight: bold;
+    position: absolute;
+}
+
+.button:hover {
+    background-color: #fca311; 
+    border: solid 1px #fca311; 
+    color: #fff; 
+}
+
+.button:active {
+    transform: scale(0.9);
+}
+
+.decrementButton {
+    left: 9px;
+    border-radius: 12px 0px 0px 12px;
+}
+  
+.incrementButton {
+    right: 9px;
+    border-radius: 0px 12px 12px 0px;
 }
 
 .input {
@@ -17,7 +60,6 @@
     color: #fff;
     min-width: 3rem;
     max-width: 6rem;
-    flex: 1;
     border-radius: 15px;
     -moz-appearance: textfield;
     -webkit-appearance: textfield;

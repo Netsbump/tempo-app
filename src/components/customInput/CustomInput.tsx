@@ -30,9 +30,28 @@ export const CustomInput: React.FC<CustomInputProps> = ({ label, defaultValue, o
     onChange(newValue);
   };
 
+  const increment = () => {
+    let newValue = value + 1;
+    if (newValue > 1000) {
+      newValue = 1000;
+    }
+    setValue(newValue);
+    onChange(newValue);
+  };
+
+  const decrement = () => {
+    let newValue = value - 1;
+    if (newValue < 0) {
+      newValue = 0;
+    }
+    setValue(newValue);
+    onChange(newValue);
+  };
+
   return (
     <div className={styles.inputWrapper}>
       <span className={styles.info}>{label}</span>
+      <div className={styles.inputContainer}>
       <input
         className={styles.input}
         type="number"
@@ -43,6 +62,9 @@ export const CustomInput: React.FC<CustomInputProps> = ({ label, defaultValue, o
         pattern="\d*"
         inputMode="numeric"
       />
+      <button className={`${styles.button} ${styles.decrementButton}`} onClick={decrement}>-</button>
+      <button className={`${styles.button} ${styles.incrementButton}`} onClick={increment}>+</button>
+      </div>
       <span className={styles.duration}>{unit}</span>
     </div>
   );
