@@ -1,17 +1,30 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './FullScreenButton.module.css';
-import fullScreen from '../../assets/img/full-screen.svg'
+import fullScreenIcon from '../../assets/img/arrows-out-simple.svg'
+import normalScreenIcon from '../../assets/img/arrows-in-simple.svg'
 
 export const FullScreenButton: React.FC = () => {
+  const [isFullScreen, setIsFullScreen] = useState<boolean>(false);
+
   const toggleFullScreen = () => {
     if (!document.fullscreenElement) {
         document.documentElement.requestFullscreen();
+        setIsFullScreen(true);
     } else {
         document.exitFullscreen();
+        setIsFullScreen(false);
     }
   };
 
   useEffect(() => {
+
+    // Update the state when the fullscreen change event occurs
+    const handleFullScreenChange = () => {
+      setIsFullScreen(!!document.fullscreenElement);
+    };
+
+    document.addEventListener('fullscreenchange', handleFullScreenChange);
+
     const acquireWakeLock = async () => {
       if ('wakeLock' in navigator) {
         try {
@@ -31,9 +44,20 @@ export const FullScreenButton: React.FC = () => {
     };
 
     acquireWakeLock();
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      document.removeEventListener('fullscreenchange', handleFullScreenChange);
+    };
+
   }, []);
 
   return (
-    <img className={styles.img} src={fullScreen} alt='Fullscreen' onClick={toggleFullScreen} />
+    <img 
+      className={styles.img} 
+      // src={fullScreen} alt='Fullscreen' 
+      src={isFullScreen ? normalScreenIcon : fullScreenIcon} 
+      alt={isFullScreen ? 'Normal Screen' : 'Full Screen'} 
+      onClick={toggleFullScreen} />
   );
 };
