@@ -52,18 +52,18 @@ export const CustomInput: React.FC<CustomInputProps> = ({ label, defaultValue, o
     <div className={styles.inputWrapper}>
       <span className={styles.info}>{label}</span>
       <div className={styles.inputContainer}>
-      <input
-        className={styles.input}
-        type="number"
-        value={value}
-        onChange={handleChange}
-        min={0}
-        max={1000}
-        pattern="\d*"
-        inputMode="numeric"
-      />
-      <button className={`${styles.button} ${styles.decrementButton}`} onClick={decrement}>-</button>
-      <button className={`${styles.button} ${styles.incrementButton}`} onClick={increment}>+</button>
+        <input
+          className={styles.input}
+          type="number"
+          value={value}
+          onChange={handleChange}
+          min={0}
+          max={1000}
+          pattern="\d*"
+          inputMode="numeric"
+        />
+        <button className={`${styles.button} ${styles.decrementButton}`} onClick={decrement}>-</button>
+        <button className={`${styles.button} ${styles.incrementButton}`} onClick={increment}>+</button>
       </div>
       <span className={styles.duration}>{unit}</span>
     </div>

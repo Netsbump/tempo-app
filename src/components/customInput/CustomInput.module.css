@@ -31,24 +31,16 @@
     position: absolute;
 }
 
-/* .button:hover {
-    background-color: #fca311; 
-    border: solid 1px #fca311; 
-    color: #fff; 
-} */
-
 .button:active {
     transform: scale(0.9);
 }
 
 .decrementButton {
     left: 14px;
-    /* border-radius: 12px 0px 0px 12px; */
 }
   
 .incrementButton {
     right: 14px;
-    /* border-radius: 0px 12px 12px 0px; */
 }
 
 .input {
