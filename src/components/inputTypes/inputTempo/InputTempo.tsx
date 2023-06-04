@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { CustomInput } from '../customInput/CustomInput';
+import { CustomInput } from '../../customInput/CustomInput';
 import styles from './InputTempo.module.css';
 
 type TempoState = {

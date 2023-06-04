@@ -8,6 +8,10 @@ import {
 import { FullScreenButton } from '../../components/fullScreenButton/FullScreenButton';
 import { InputPage } from '../setTimer/InputPage';
 import { TempoPage } from '../tempoApp/TempoPage';
+import { FortimePage } from '../fortimeApp/FortimePage';
+import { AmrapPage } from '../amrapApp/AmrapPage';
+import { TabataPage } from '../tabataApp/TabataPage';
+import { EmomPage } from '../emomApp/EmomPage';
 import { PlayPauseProvider } from '../../contexts/PlayPauseContext';
 import styles from './App.module.css';
 
@@ -56,10 +60,58 @@ const router = createHashRouter([
     element: <InputPage type="tempo"/>,
   },
   {
+    path: "amrap-input",
+    element: <InputPage type="amrap"/>,
+  },
+  {
+    path: "tabata-input",
+    element: <InputPage type="tabata"/>,
+  },
+  {
+    path: "fortime-input",
+    element: <InputPage type="fortime"/>,
+  },
+  {
+    path: "emom-input",
+    element: <InputPage type="emom"/>,
+  },
+  {
     path: "tempo",
     element: (
       <PlayPauseProvider>
         <TempoPage />
+      </PlayPauseProvider>
+    ),
+  },
+  {
+    path: "amrap",
+    element: (
+      <PlayPauseProvider>
+        <AmrapPage />
+      </PlayPauseProvider>
+    ),
+  },
+  {
+    path: "tabata",
+    element: (
+      <PlayPauseProvider>
+        <TabataPage />
+      </PlayPauseProvider>
+    ),
+  },
+  {
+    path: "fortime",
+    element: (
+      <PlayPauseProvider>
+        <FortimePage />
+      </PlayPauseProvider>
+    ),
+  },
+  {
+    path: "emom",
+    element: (
+      <PlayPauseProvider>
+        <EmomPage />
       </PlayPauseProvider>
     ),
   }
