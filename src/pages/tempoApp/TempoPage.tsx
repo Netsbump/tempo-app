@@ -30,13 +30,14 @@ export const TempoPage: React.FC = () => {
   const location = useLocation();
   const { tempo, repetitions, rest, rounds } = location.state as TempoPageState;
 
-  // Current phase, remaining time, round, and repetition counters
+  // Current phase, remaining time, displaying time, round, and repetition counters
   const [currentPhase, setCurrentPhase] = useState<number>(0);
   const [timeLeft, setTimeLeft] = useState(tempo[currentPhase]);
+  const [displayTime, setDisplayTime] = useState(tempo[currentPhase]);
   const [currentRound, setCurrentRound] = useState(1);
   const [currentRepetition, setCurrentRepetition] = useState(1);
 
-  // Status flags for warmup, rest, completion and soundEnabled
+  // Status flags for warmup, rest, completion, soundEnabled and pause/play
   const [isWarmupDone, setIsWarmupDone] = useState(false);
   const [isResting, setIsResting] = useState(false);
   const [isFinished, setIsFinished] = useState<boolean>(false);
@@ -127,6 +128,7 @@ export const TempoPage: React.FC = () => {
 
       setCurrentPhase(nextPhase);
       setTimeLeft(adjustedTempo[nextPhase]);
+      setDisplayTime(tempo[nextPhase] === 0 ? 0 : adjustedTempo[nextPhase]);
 
       setAnimationDuration(adjustedTempo[nextPhase]);
 
@@ -134,10 +136,11 @@ export const TempoPage: React.FC = () => {
 
     const interval = setInterval(() => {
       setTimeLeft((prevTimeLeft) => prevTimeLeft - 1);
+      setDisplayTime((prevDisplayTime) => prevDisplayTime - 1);
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [isRunning ,currentPhase, timeLeft, adjustedTempo, currentRepetition, repetitions, currentRound, rounds, isWarmupDone, isResting, rest, animationDuration, setAnimationDuration, playBeep, playEndRep]);
+  }, [isRunning ,currentPhase, timeLeft, adjustedTempo, displayTime, currentRepetition, repetitions, currentRound, rounds, isWarmupDone, isResting, rest, animationDuration, playBeep, playEndRep]);
   
   const renderTempoElements = () => {
     if (!isWarmupDone) {
@@ -200,7 +203,8 @@ export const TempoPage: React.FC = () => {
             > 
             <circle r="45" cx="50" cy="50"></circle>
             </svg>
-            {timeLeft}
+            {/* {timeLeft} */}
+            {displayTime}
           </div>
           <article className={styles.reps}>
             <div>REPS</div>
