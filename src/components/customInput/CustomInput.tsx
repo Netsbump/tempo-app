@@ -13,11 +13,16 @@ export const CustomInput: React.FC<CustomInputProps> = ({ label, defaultValue, o
   const [value, setValue] = useState<number>(defaultValue);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-
+    console.log(event.target.value);
     let newValue = Number(event.target.value);
 
-    // Check for minimum value
+    // // Check for minimum value
     if (newValue < 0 || isNaN(newValue)) {
+      newValue = 0;
+    }
+    
+    // Check for minimum value
+    if (isNaN(newValue)) {
       newValue = 0;
     }
 
