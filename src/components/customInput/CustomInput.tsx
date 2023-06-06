@@ -9,21 +9,20 @@ interface CustomInputProps {
 }
 
 export const CustomInput: React.FC<CustomInputProps> = ({ label, defaultValue, onChange, unit }) => {
-
   const [value, setValue] = useState<number>(defaultValue);
 
+  const getMinimumValue = (label: string) => {
+    const labelsWithMinOfOne = ['DO', 'FOR', 'REST'];
+    return labelsWithMinOfOne.includes(label) ? 1 : 0;
+  };
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(event.target.value);
     let newValue = Number(event.target.value);
 
-    // // Check for minimum value
-    if (newValue < 0 || isNaN(newValue)) {
-      newValue = 0;
-    }
-    
     // Check for minimum value
-    if (isNaN(newValue)) {
-      newValue = 0;
+    const minValue = getMinimumValue(label);
+    if (newValue < minValue || isNaN(newValue)) {
+      newValue = minValue;
     }
 
     // Check for maximum value
@@ -46,8 +45,9 @@ export const CustomInput: React.FC<CustomInputProps> = ({ label, defaultValue, o
 
   const decrement = () => {
     let newValue = value - 1;
-    if (newValue < 0) {
-      newValue = 0;
+    const minValue = getMinimumValue(label);
+    if (newValue < minValue) {
+      newValue = minValue;
     }
     setValue(newValue);
     onChange(newValue);
