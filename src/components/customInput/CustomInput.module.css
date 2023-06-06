@@ -43,6 +43,13 @@
     right: 14px;
 }
 
+/* disable arrows from the Number input in chrome/safari/edge and opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
 .input {
     font-size: 1rem;
     padding: 0.8rem 1rem;
