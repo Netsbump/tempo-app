@@ -203,7 +203,6 @@ export const TempoPage: React.FC = () => {
             > 
             <circle r="45" cx="50" cy="50"></circle>
             </svg>
-            {/* {timeLeft} */}
             {displayTime}
           </div>
           <article className={styles.reps}>

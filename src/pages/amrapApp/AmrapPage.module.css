@@ -1,0 +1,173 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.header {
+display: flex;
+width:  calc(100% - 2em);
+justify-content: space-between;
+align-items: center;
+padding: 1.5rem 0;
+}
+
+.left {
+display: flex;
+align-items: center;
+column-gap: 0.5rem;
+}
+
+.img{
+width: 30px;
+height: 30px;
+cursor: pointer;
+}
+
+.main {
+display: flex;
+flex: 1;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+width: 100%;
+}
+
+.title {
+font-size: 1.5rem;
+text-align: center;
+font-weight: normal;
+margin: 0 0 0 1rem;
+}
+
+.info {
+display: flex;
+column-gap: 0.5rem;
+font-size: 1.5rem;
+}
+
+.round {
+color: #ff4136;
+}
+
+.tempo {
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: space-evenly;
+flex: 1;
+width: 100%;
+}
+
+.containerTempo {
+display: flex;
+font-size: 1.5em;
+width: 100%;
+justify-content: center;
+}
+
+.containerPhase {
+display: flex;
+flex-direction: column;
+width: 60px;
+height: 90px;
+align-items: center;
+row-gap: 10px;
+}
+
+.tempoPhase {
+display: flex;
+width: 36px;
+height: 36px;
+border-radius: 50%;
+justify-content: center;
+align-items: center;
+text-align: center;
+}
+
+.activePhase {
+color: #000;
+background-color: #ade8f4;
+}
+
+.inactivePhase {
+color: #fff; 
+}
+
+.labelPhase {
+text-align: center;
+}
+
+.timer {
+font-size: 16em;
+font-weight: bold;
+text-align: center;
+position: relative;
+width: 100%;
+overflow: hidden; 
+}
+
+.reps {
+display: flex;
+flex-direction: column;
+align-items: center;
+font-size: 1.5em;
+}
+
+.repsCount{
+display: flex;
+column-gap: 3px;
+}
+
+.repsDone{
+color: #ade8f4;
+}
+
+.completed { 
+color: #80ed99;
+font-size: 5rem;
+text-align: center;
+}
+
+.actionButton {
+justify-content: center;
+display: flex;
+padding: 0.5rem 0.5rem;
+border-radius: 50%;
+cursor: pointer;
+background-color: white;
+border: none;
+}
+
+.resetButton:hover {
+background-color: #fff;
+color: #222;
+}
+
+.footer{
+width: 100%;
+display: flex;
+justify-content: center;
+column-gap: 4rem;
+margin-bottom: 1rem;
+z-index: 1;
+}
+
+@media (max-width: 390px) {
+
+.info, .title {
+    font-size: 1em;
+}
+
+.completed {
+    font-size: 4em;
+}
+
+.footer{
+    column-gap: 5em;
+}
+
+}
+
+  

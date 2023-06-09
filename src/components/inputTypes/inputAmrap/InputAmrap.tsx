@@ -82,7 +82,12 @@ export const InputAmrap : React.FC<InputAmrapProps> = ({ onStateChange }) => {
             </div>
         </div>
         <div className={styles.extraRoundsRestContainer}>
-            <button className={styles.img} onClick={() => setShowRestAndRounds(!showRestAndRounds)}>
+            <button className={styles.img} onClick={() => {
+                 if (showRestAndRounds) {
+                    setRest(0);
+                    setRounds(1);
+                }
+                setShowRestAndRounds(!showRestAndRounds)}}>
                 {showRestAndRounds ? " - " : " + "}
             </button>
             <p className={styles.info}>

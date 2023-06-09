@@ -9,13 +9,11 @@
 
 .inputsContainer{
     display: flex;
-    /* width: 100%; */
     justify-content: center;
-    /* align-items: center; */
 }
 
 .showRestAndRounds{
-    column-gap: 10rem;
+    justify-content: space-evenly;
 }
 
 .extraRoundsRestContainer {
