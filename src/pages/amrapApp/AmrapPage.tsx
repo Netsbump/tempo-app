@@ -25,23 +25,13 @@ export const AmrapPage: React.FC = () => {
     const location = useLocation();
     const { minutes, seconds, rest, rounds } = location.state as AmrapPageState; 
 
-    const calculateTimeLeft = () => {
-        // Convertissez les minutes et les secondes en secondes totales
-        let totalSeconds = (minutes * 60) + seconds;
-      
-        // Calculez les minutes et les secondes restantes
-        let minutesLeft = Math.floor(totalSeconds / 60);
-        let secondsLeft = totalSeconds % 60;
-      
-        // Retournez les minutes et les secondes restantes
-        return {
-          minutes: minutesLeft,
-          seconds: secondsLeft,
-        };
+    const calculateInitialTimeLeft = () => {
+       return (minutes * 60) + seconds;
     };
 
-    // Current remaining time and rounds
-    const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+    // Current roundDuration, remaining time and rounds
+    const [roundDuration, setRoundDuration] = useState(calculateInitialTimeLeft());
+    const [timeLeft, setTimeLeft] = useState(calculateInitialTimeLeft());
     const [currentRound, setCurrentRound] = useState(1);
 
     // Status flags for warmup, rest, completion, soundEnabled and pause/play
@@ -73,7 +63,7 @@ export const AmrapPage: React.FC = () => {
 
     // Reset tempo 
     const reset = () => {
-        setTimeLeft(calculateTimeLeft());
+        setTimeLeft(calculateInitialTimeLeft());
         setCurrentRound(1);
         setIsWarmupDone(false);
         setIsResting(false);
@@ -82,12 +72,58 @@ export const AmrapPage: React.FC = () => {
     };
 
     useEffect(() => {
-        const timer = setTimeout(() => {
-            setTimeLeft(calculateTimeLeft());
-        }, 1000);
+
+      // Composant en pause ? 
+      if (!isRunning) return;
+
+      // Warmup terminé ? 
+      if (!isWarmupDone) {
+        return;
+      }
+
+      // 
+      if (timeLeft <= 0) {
+
+        // Composant en pause ? 
+        if (isResting) {
+          setIsResting(false);
+          setCurrentRound((prevRound) => prevRound + 1);
+          console.log(roundDuration);
+          setTimeLeft(roundDuration); 
+          return;
+        }
+        
+        playEndRep();
+    
+        // Par défault rounds = 1 mais rounds peut être défini sur une valeur plus haute par l'utilisateur  
+        // Si on a dépassé le nb de rounds prévu afficher le composant de fin 
+        if (currentRound > rounds) {
+
+          setIsFinished(true);
+          return;
+        
+        // Sinon si rounds > 1 et que qu'on cu
+        } else if (rounds > 1 && currentRound === 1) {
+
+          setIsResting(true);
+          setTimeLeft(rest);
+
+        }
+
+        return;
+      }
+
+      if ([3, 2, 1].includes(timeLeft)) {
+        playBeep();
+      }
+
+      const timer = setTimeout(() => {
+        setTimeLeft((prevTimeLeft) => prevTimeLeft - 1);
+      }, 1000);
   
-        return () => clearTimeout(timer);
-    });
+      return () => clearTimeout(timer);
+
+    }, [timeLeft, playBeep, playEndRep, isRunning, currentRound, rounds,  isWarmupDone, isResting, rest, roundDuration]);
 
     const renderAmrapElements = () => {
         if (!isWarmupDone) {
@@ -125,7 +161,7 @@ export const AmrapPage: React.FC = () => {
         } else {
           return (
             <div className={styles.timer}>
-                {timeLeft.minutes} : {timeLeft.seconds}
+                {timeLeft}
             </div>
           )
         }
