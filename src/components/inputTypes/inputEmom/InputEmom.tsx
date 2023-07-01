@@ -31,25 +31,20 @@ export const InputEmom : React.FC<InputEmomProps> = ({ onStateChange }) => {
     }, []);
 
     return (
-    <div className={styles.container}>
-        <div className={styles.inputsContainer}>
-            <div>
-                <CustomInput
-                    label="FOR"
-                    defaultValue={minutes}
-                    onChange={handleMinutesChange}
-                    unit="MINUTES"
-                />
-                <CustomInput
-                    label="DO"
-                    defaultValue={numberExercises}
-                    onChange={handleNumberExercicesChange}
-                    unit="EXERCISES"
-                />
-            </div>
+        <div className={styles.container}>
+            <CustomInput
+                label="FOR"
+                defaultValue={minutes}
+                onChange={handleMinutesChange}
+                unit="MINUTES"
+            />
+            <CustomInput
+                label="DO"
+                defaultValue={numberExercises}
+                onChange={handleNumberExercicesChange}
+                unit="EXERCISES"
+            />
         </div>
-    </div>
-
     )
 
 }
