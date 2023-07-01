@@ -7,6 +7,7 @@ import playImage from '../../assets/img/play.svg'
 import pauseImage from '../../assets/img/pause.svg'
 import { Warmup } from '../../components/warmup/Warmup';
 import { Rest } from '../../components/rest/Rest';
+import { FinishedMessage } from '../../components/finishedMessage/FinishedMessage';
 import { FullScreenButton } from '../../components/fullScreenButton/FullScreenButton';
 import { VolumeAction } from '../../components/volumeAction/VolumeAction';
 import { usePlayPause } from '../../contexts/PlayPauseContext';
@@ -158,9 +159,9 @@ export const TempoPage: React.FC = () => {
 
     if (isFinished) {
       return (
-        <div className={styles.completed}>
-          {`${rounds} ROUNDS COMPLETED`}
-        </div>
+        <FinishedMessage
+          rounds={rounds} 
+        />
       );
     }
 

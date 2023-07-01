@@ -25,15 +25,6 @@ height: 30px;
 cursor: pointer;
 }
 
-.main {
-display: flex;
-flex: 1;
-align-items: center;
-justify-content: center;
-flex-direction: column;
-width: 100%;
-}
-
 .title {
 font-size: 1.5rem;
 text-align: center;
@@ -51,52 +42,22 @@ font-size: 1.5rem;
 color: #ff4136;
 }
 
-.tempo {
+.main {
+display: flex;
+flex: 1;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+width: 100%;
+}
+
+.containerTimer {
 display: flex;
 flex-direction: column;
 align-items: center;
 justify-content: space-evenly;
 flex: 1;
 width: 100%;
-}
-
-.containerTempo {
-display: flex;
-font-size: 1.5em;
-width: 100%;
-justify-content: center;
-}
-
-.containerPhase {
-display: flex;
-flex-direction: column;
-width: 60px;
-height: 90px;
-align-items: center;
-row-gap: 10px;
-}
-
-.tempoPhase {
-display: flex;
-width: 36px;
-height: 36px;
-border-radius: 50%;
-justify-content: center;
-align-items: center;
-text-align: center;
-}
-
-.activePhase {
-color: #000;
-background-color: #ade8f4;
-}
-
-.inactivePhase {
-color: #fff; 
-}
-
-.labelPhase {
-text-align: center;
 }
 
 .timer {
@@ -106,28 +67,6 @@ text-align: center;
 position: relative;
 width: 100%;
 overflow: hidden; 
-}
-
-.reps {
-display: flex;
-flex-direction: column;
-align-items: center;
-font-size: 1.5em;
-}
-
-.repsCount{
-display: flex;
-column-gap: 3px;
-}
-
-.repsDone{
-color: #ade8f4;
-}
-
-.completed { 
-color: #80ed99;
-font-size: 5rem;
-text-align: center;
 }
 
 .actionButton {
@@ -156,18 +95,37 @@ z-index: 1;
 
 @media (max-width: 390px) {
 
-.info, .title {
-    font-size: 1em;
+    .info, .title {
+        font-size: 1em;
+    }
+
+    .timer {
+        font-size: 7em;
+    }
+
+    .completed {
+        font-size: 4em;
+    }
+
+    .footer{
+        column-gap: 5em;
+    }
+
 }
 
-.completed {
-    font-size: 4em;
+@media (min-width: 391px) and (max-width: 499px) {
+
+    .timer {
+        font-size: 9em;
+    }
+    
 }
 
-.footer{
-    column-gap: 5em;
-}
+@media (min-width: 500px) and (max-width: 700px) {
 
+    .timer {
+        font-size: 10em;
+    }
+    
 }
-
   

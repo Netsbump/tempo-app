@@ -154,12 +154,6 @@
     color: #ade8f4;
   }
 
-  .completed { 
-    color: #80ed99;
-    font-size: 5rem;
-    text-align: center;
-  }
-
   .actionButton {
     justify-content: center;
     display: flex;

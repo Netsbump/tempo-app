@@ -12,7 +12,7 @@ export const CustomInput: React.FC<CustomInputProps> = ({ label, defaultValue, o
   const [value, setValue] = useState<number>(defaultValue);
 
   const getMinimumValue = (label: string) => {
-    const labelsWithMinOfOne = ['DO', 'FOR', 'REST'];
+    const labelsWithMinOfOne = ['DO', 'FOR', 'REST', 'SET'];
     return labelsWithMinOfOne.includes(label) ? 1 : 0;
   };
 
