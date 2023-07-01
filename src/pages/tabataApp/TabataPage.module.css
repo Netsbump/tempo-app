@@ -1,0 +1,131 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.header {
+display: flex;
+width:  calc(100% - 2em);
+justify-content: space-between;
+align-items: center;
+padding: 1.5rem 0;
+}
+
+.left {
+display: flex;
+align-items: center;
+column-gap: 0.5rem;
+}
+
+.img{
+width: 30px;
+height: 30px;
+cursor: pointer;
+}
+
+.title {
+font-size: 1.5rem;
+text-align: center;
+font-weight: normal;
+margin: 0 0 0 1rem;
+}
+
+.info {
+display: flex;
+column-gap: 0.5rem;
+font-size: 1.5rem;
+}
+
+.round {
+color: #ff4136;
+}
+
+.main {
+display: flex;
+flex: 1;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+width: 100%;
+}
+
+.containerTimer {
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: space-evenly;
+flex: 1;
+width: 100%;
+}
+
+.timer {
+font-size: 16em;
+font-weight: bold;
+text-align: center;
+position: relative;
+width: 100%;
+overflow: hidden; 
+}
+
+.actionButton {
+justify-content: center;
+display: flex;
+padding: 0.5rem 0.5rem;
+border-radius: 50%;
+cursor: pointer;
+background-color: white;
+border: none;
+}
+
+.resetButton:hover {
+background-color: #fff;
+color: #222;
+}
+
+.footer{
+width: 100%;
+display: flex;
+justify-content: center;
+column-gap: 4rem;
+margin-bottom: 1rem;
+z-index: 1;
+}
+
+@media (max-width: 390px) {
+
+    .info, .title {
+        font-size: 1em;
+    }
+
+    .timer {
+        font-size: 7em;
+    }
+
+    .completed {
+        font-size: 4em;
+    }
+
+    .footer{
+        column-gap: 5em;
+    }
+
+}
+
+@media (min-width: 391px) and (max-width: 499px) {
+
+    .timer {
+        font-size: 9em;
+    }
+    
+}
+
+@media (min-width: 500px) and (max-width: 700px) {
+
+    .timer {
+        font-size: 10em;
+    }
+    
+}
+  
