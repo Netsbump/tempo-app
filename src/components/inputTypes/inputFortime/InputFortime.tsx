@@ -14,7 +14,7 @@ export const InputFortime : React.FC<InputFortimeProps> = ({ onStateChange }) =>
     return (
 
         <div>
-            Custom Imput For Time
+            "For Time Timer" is currently under development. Stay tuned!"
         </div>
     )
 

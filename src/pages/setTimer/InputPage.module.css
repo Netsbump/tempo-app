@@ -58,7 +58,15 @@
     color: #222;
   }
 
+  .buttonDisabled {
+    opacity: 0.5; /* Réduit l'opacité pour un effet "grisé" */
+    cursor: not-allowed; /* Change le curseur pour indiquer l'interdiction de cliquer */
+  }
   
+  .buttonDisabled:active {
+    transform: none; /* Annule tout effet de clic si le bouton est désactivé */
+  }
+
   @media (max-width: 500px) {
     .main {
       flex-direction: column;

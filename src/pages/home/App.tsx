@@ -76,6 +76,10 @@ const router = createHashRouter([
     element: <InputPage type="emom"/>,
   },
   {
+    path: "rest-input",
+    element: <InputPage type="rest"/>,
+  },
+  {
     path: "tempo",
     element: (
       <PlayPauseProvider>

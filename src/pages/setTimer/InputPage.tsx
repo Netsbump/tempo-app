@@ -5,9 +5,11 @@ import { InputFortime } from '../../components/inputTypes/inputFortime/InputFort
 import { InputAmrap } from '../../components/inputTypes/inputAmrap/InputAmrap';
 import { InputTabata } from '../../components/inputTypes/inputTabata/InputTabata';
 import { InputEmom } from '../../components/inputTypes/inputEmom/InputEmom';
+import { InputRest } from '../../components/inputTypes/inputRest/InputRest';
 import styles from './InputPage.module.css';
 import { useNavigate  } from 'react-router-dom';
 import backImage from '../../assets/img/arrow-back.svg'
+
 
 type InputPageProps = {
   type: string;
@@ -25,7 +27,6 @@ export const InputPage: React.FC<InputPageProps> = ({ type }) => {
   const handleSubmit = () => {
     navigate('/' + type, { state: timerState });
   };
-
 
   // Determine which input component to render based on the timer type
   let InputComponent;
@@ -45,10 +46,15 @@ export const InputPage: React.FC<InputPageProps> = ({ type }) => {
     case 'emom':
       InputComponent = InputEmom;
       break;
-    // Todo Add similar cases for other timer types...
+      case 'rest':
+      InputComponent = InputRest;
+      break;
     default:
       throw new Error("Invalid timer type: " + type);
   }
+
+  // Currently under development 
+  const isDisabled = type === 'rest' || type === 'fortime';
 
   return (
     <div className={styles.container}>
@@ -63,7 +69,7 @@ export const InputPage: React.FC<InputPageProps> = ({ type }) => {
         <InputComponent onStateChange={handleStateChange} />
       </main>
       <footer>
-      <button className={styles.submitButton} onClick={handleSubmit}>
+      <button className={`${styles.submitButton} ${isDisabled ? styles.buttonDisabled : ''}`} onClick={handleSubmit} disabled={isDisabled}>
         START
       </button>
       </footer>
