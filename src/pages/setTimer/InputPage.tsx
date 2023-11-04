@@ -54,7 +54,7 @@ export const InputPage: React.FC<InputPageProps> = ({ type }) => {
   }
 
   // Currently under development 
-  const isDisabled = type === 'rest' || type === 'fortime';
+  const isDisabled = type === 'rest' || type === 'fortime' || type ==='emom';
 
   return (
     <div className={styles.container}>

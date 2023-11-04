@@ -5,7 +5,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/github_username/repo_name">
+  <a href="https://github.com/Netsbump/tempo-app">
     <img src="src/assets/img/stop-watch.svg" alt="Logo" width="80" height="80">
   </a>
 
@@ -41,6 +41,7 @@
     <li><a href="#tabata-timer">TABATA Timer</a></li>
     <li><a href="#for-time-timer">For Time Timer</a></li>
     <li><a href="#emom-timer">EMOM Timer</a></li>
+    <li><a href="#common-timer-features">Common Timer Features</a></li>
     <li><a href="#choices-building-application">Choices Building Application</a></li>
   </ol>
 </details>
@@ -74,7 +75,7 @@ At present, MyFitTimer is a web application. However, the long-term goal is to d
 ## Tempo Timer
 
 <aside>
-currently functional but requires improvements
+The Tempo Timer is a specialized tool for workouts that require pacing, such as weightlifting or gymnastic holds. Users can set a four-phase timer, each phase corresponding to a different period of the exercise (e.g., 4 seconds up, 2 seconds hold, 2 seconds down, 1 second pause). Additionally, you can specify the number of repetitions and the rest time between sets for a tailored workout experience.
 </aside>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -83,7 +84,7 @@ currently functional but requires improvements
 ## AMRAP Timer
 
 <aside>
-under development
+The AMRAP Timer is designed for high-intensity circuit training where the goal is to complete as many rounds as possible within a set time frame. This timer allows users to set a fixed duration for the workout while also including options for counting rounds and setting rest periods. It’s perfect for pushing the limits of endurance and strength under time pressure.
 </aside>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -91,7 +92,7 @@ under development
 ## TABATA Timer
 
 <aside>
-under development
+The Tabata Timer caters to those engaging in the Tabata protocol, a form of high-intensity interval training (HIIT). With this timer, users can set work and rest intervals that repeat over a number of rounds. Typically, this involves 20 seconds of intense effort followed by 10 seconds of rest, repeated eight times for a total of four minutes, challenging both the aerobic and anaerobic systems.
 </aside>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -99,7 +100,7 @@ under development
 ## For Time Timer
 
 <aside>
-under development
+The For Time Timer is currently under development and once completed, it will enable athletes to time their workouts that are meant to be completed as fast as possible. The functionality will track overall time taken to complete the set number of exercises or rounds, emphasizing speed and total time over intervals.
 </aside>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -108,8 +109,23 @@ under development
 ## EMOM Timer
 
 <aside>
-under development
+The EMOM (Every Minute On the Minute) Timer is an essential tool for structuring workouts where exercises are performed at the start of every minute for a set number of minutes. This type of timer is particularly beneficial for interval training, focusing on consistency and recovery. Once the functionality is complete, users will be able to set the number of minutes and track their progress through each interval, ensuring precise timing and performance measurement for their workouts.
 </aside>
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- COMMON TIMER FEATURES -->
+## Common Timer Features
+
+All timers in the MyFitTimer app share a set of common features to enhance the user's training experience:
+
+- **Sound Alerts:** To keep track of timing without constant visual contact, users can enable sound alerts. These audible cues are designed to signal the start and end of intervals or rounds, ensuring that users stay focused on their workout. Sound alerts can be toggled on or off according to user preference.
+
+- **Pause and Resume:** Flexibility during workouts is crucial. Each timer can be paused at any moment, allowing users to take a break if needed. The resume function ensures that users can pick up exactly where they left off, maintaining the integrity of their workout session.
+
+- **Reset Functionality:** Whether to correct a mistake or to start a new set, the reset feature allows users to restart the timer from zero at any time during the exercise. This function is handy for back-to-back sessions or for when users need to start over for any reason.
+
+These features are designed to provide a seamless and customizable workout experience, catering to the varied needs of fitness enthusiasts.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
